@@ -1,17 +1,7 @@
 import React, { Component } from "react";
-// import {connect} from 'react-redux'
-// import { GoogleLogin } from "react-google-login";
-// import { Tabs } from "react-bootstrap";
-// import { Tab } from "react-bootstrap";
+
 import styles from "./Login.module.css";
-// import {
-//     registerUser,
-//     loginUser,
-//     loginGoogle,
-// } from "../../actions/auth_actions";
-// import {showDialog} from '../../actions/dialog_actions'
-// import google from '../../assets/google.svg'
-// import ForgotPModal from './ForgotPModal'
+
 
 class Login extends Component {
    
@@ -55,30 +45,15 @@ class Login extends Component {
                                     </div>
                                 </form>
                                         </div>
-
                                     </div>
-                                    
                                     <br />
-                                   
-                                   
-                               
-                                
-
                         </div>
+                    </div>
+                    </div>
+                    </div>
 
-
-                    </div>
-                    </div>
-                    </div>
-                    
-                    
-                    
-                    
                 </div>
 
-                <div className={styles.right_section} >
-                    
-                </div>
             </div>
         );
     }

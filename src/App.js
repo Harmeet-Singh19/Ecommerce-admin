@@ -1,18 +1,24 @@
+import React, { lazy, Suspense } from 'react'
+import { Route } from 'react-router-dom'
+import Loader from 'react-loader-spinner'
+import './App.css'
 
-import './App.css';
-import LoginPage from './pages/login_page/loginScreen'
-import SellerPage from './pages/seller_page/Seller'
-import AdminPage from './pages/admin_page/Admin'
-import PreviousOrderPage from './pages/previous_order_page/PreviousOrders'
+
+const LoginPage= lazy(()=>
+import('./pages/login_page/loginScreen'))
 
 
 function App() {
   return (
-      // <LoginPage/>
-      // <SellerPage/>
-      // <AdminPage/>
-
-      <PreviousOrderPage/>
+    <Suspense
+    fallback={
+      <center>
+        <Loader type='ThreeDots' color='yellow' height={150} width={150} />
+      </center>
+    }
+  >
+    <Route exact path="/login" component={LoginPage}/>
+  </Suspense>
   );
 }
 
