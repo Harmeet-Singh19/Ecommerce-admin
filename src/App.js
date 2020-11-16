@@ -7,6 +7,8 @@ import './App.css'
 const LoginPage= lazy(()=>
 import('./pages/login_page/loginScreen'))
 
+const HomePage=lazy(()=>import('./pages/home_page/Admin'))
+
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
       </center>
     }
   >
+    <Route exact path="/" component={HomePage}/>
     <Route exact path="/login" component={LoginPage}/>
   </Suspense>
   );
