@@ -62,40 +62,28 @@ class Upload extends Component {
 
     addImages=async () =>{
         await this.setState({ isLoading: true })
-        let token = await localStorage.getItem("token")
-       
-        //console.log(form_data)
-        var myHeaders = new Headers();
-
-    
-    myHeaders.append("authorization",`${token}`)
-    var raw=new FormData()
-    raw.append('multi-files', this.state.image);
-    
-    console.log(raw.get('tags'))
-    var requestOptions = {
-        method: "POST",
-        headers: myHeaders,
-        body: raw,
-        redirect: "follow",
-    };
-   
-    await fetch(`https://du-book-server.herokuapp.com/api/admin/book/image/add`, requestOptions).then((response) =>
-    {
-        console.log(response)
-        response.json().then((res) => {
-            console.log(res);
-            if (res.data ) {
-               console.log("succesful");
-         
-           
-            } else {
-                console.log("something went wrong")
-                alert(`${res.message}`)
-               
+ 
+    let token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjljNDA3YmRhMTYyOTJhM2MzN2IxMjYiLCJpYXQiOjE2MDU2MzkyMzl9.XxIKLVS_-nPgnx4y43OWRYIz9zuy2ofCObCb0mC_YXg`
+    console.log(this.state.image)
+    const data = new FormData()
+    for(var x = 0; x<this.state.image.length; x++) {
+        data.append('file', this.state.image[x])
+    }
+        axios.post(`http://localhost:4000/api/admin/book/image/add`, data, {
+            headers: {
+                
+                Authorization: token
             }
         })
-    })
+            .then(res => {
+                console.log(res.data);
+                this.addBook(res.data.images)
+             //   this.props.history.goBack()
+            })
+            .catch(err => {
+                alert(err.response.data.message)
+                this.setState({ isLoading: false })
+            })
 }
 
 
@@ -155,20 +143,21 @@ class Upload extends Component {
                                                              ...this.state,
                                                              name:e.target.value
                                                          })}
+                                                         required
                                                                     className="form-control"
-                                                                    required/>
+                                                                    />
                                                 </label>
                                         
                                             <br />
                                             <label style={{width:"100%"}}>
                                                 Seller: 
-                                                <select className="form-control" placeholder="of the course used in (uptil 3 for commerce and 4 for btech)" onChange={async(e) => {
+                                                <select required className="form-control" placeholder="of the course used in (uptil 3 for commerce and 4 for btech)" onChange={async(e) => {
                                            await this.setState({
                                                ...this.state,
                                                 seller: e.target.value
                                             })
                                            await console.log(this.state.seller)
-                                        }} required>
+                                        }} >
                                           {this.state.vendors.map((vendor,index)=>(
                                               <option value={`${vendor._id}`}>{vendor.name},{vendor.address}</option>
                                           ))}
@@ -185,8 +174,9 @@ class Upload extends Component {
                                                       ...this.state,
                                                       price:Number(e.target.value)
                                                   })}
+                                                  required
                                                                     className="form-control"
-                                                                    required/>
+                                                                    />
                                             </label>
         
                                             <label style={{width:"100%"}}>
@@ -197,8 +187,9 @@ class Upload extends Component {
                                                       ...this.state,
                                                       description:e.target.value
                                                   })}
+                                                  required
                                                                     className="form-control"
-                                                                    required/>
+                                                                    />
                                             </label>
         
                                             <label style={{width:"100%"}}>
@@ -209,8 +200,9 @@ class Upload extends Component {
                                                       ...this.state,
                                                       author:e.target.value
                                                   })}
+                                                  required
                                                                     className="form-control"
-                                                                    required/>
+                                                                    />
                                             </label>
         
                                             <label style={{width:"100%"}}>
@@ -221,8 +213,9 @@ class Upload extends Component {
                                                       ...this.state,
                                                       publisher:e.target.value
                                                   })}
+                                                  required
                                                                     className="form-control"
-                                                                    required/>
+                                                                    />
                                             </label>
         
                                             <label style={{width:"100%"}}>
@@ -233,8 +226,9 @@ class Upload extends Component {
                                                       ...this.state,
                                                       edition:Number(e.target.value)
                                                   })}
+                                                  required
                                                                     className="form-control"
-                                                                    required/>
+                                                                    />
                                             </label>
                                             <label style={{width:"100%"}}>
                                                 Weight: 
@@ -244,10 +238,27 @@ class Upload extends Component {
                                                       ...this.state,
                                                       weight:Number(e.target.value)
                                                   })}
+                                                  required
                                                                     className="form-control"
-                                                                    required/>
+                                                                    />
                                             </label>
         
+                                            <label style={{width:"100%"}}>
+                                                Course: 
+                                                <select className="form-control" onChange={async(e) => {
+                                           await this.setState({
+                                               ...this.state,
+                                                course: e.target.value
+                                            })
+                                           await console.log(this.state.course)
+                                        }} required >
+                                            <option  value="Bsc">Bsc</option>
+                                            <option value="Bcom">Bcom</option>
+                                            <option value="Engg">Engg</option>
+                                            <option value="Engg">Mtech</option>
+                                            
+                                        </select>
+                                            </label>
                                             <label style={{width:"100%"}}>
                                                 Subject: 
                                                 <select className="form-control" onChange={async(e) => {
@@ -255,12 +266,11 @@ class Upload extends Component {
                                                ...this.state,
                                                 subject: e.target.value
                                             })
-                                           await console.log(this.state.subject)
-                                        }} required>
-                                            <option selected value="Bsc">Bsc</option>
-                                            <option value="Bcom">Bcom</option>
-                                            <option value="Engg">Engg</option>
-                                            <option value="Engg">Mtech</option>
+                                           await console.log(this.state.course)
+                                        }} required >
+                                            <option  value="maths">Maths</option>
+                                            <option  value="physics">Physics</option>
+                                           
                                             
                                         </select>
                                             </label>
@@ -274,7 +284,7 @@ class Upload extends Component {
                                             })
                                            await console.log(this.state.year)
                                         }} required>
-                                            <option selected value="1">1</option>
+                                            <option  value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
                                             <option value="4">4</option>
@@ -291,12 +301,13 @@ class Upload extends Component {
                                                                         ...this.state,
                                                                         countInStock:e.target.value
                                                                     })}
-                                                                    required />
+                                                                    required
+                                                                     />
                                             </label>
         
                                             <label style={{width:"100%"}}>
                                                 Image (to upload):
-                                                <input type="file" id="booksImg" accept="image/*" onChange={e => this.fileValidate(e)} required multiple/>
+                                                <input type="file" id="booksImg" accept="image/*" onChange={e => this.fileValidate(e)}   multiple/>
                                                 <label htmlFor="booksImg" className="fileUpload" >{this.state.image ? <>{this.state.image.name}</> : <>Browse File</>}</label>
                                                  
                                             </label>
