@@ -36,6 +36,7 @@ function PreviousOrder() {
                     user_phone = "10101010111"
                     order_price = "300"
                     />      
+                    
             </div>
         </div>
     )

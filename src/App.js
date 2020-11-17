@@ -8,7 +8,7 @@ const LoginPage= lazy(()=>
 import('./pages/login_page/loginScreen'))
 
 const HomePage=lazy(()=>import('./pages/home_page/Admin'))
-
+const UploadPage = lazy(()=> import('./pages/upload_books/Upload'))
 
 function App() {
   return (
@@ -21,7 +21,9 @@ function App() {
   >
     <Route exact path="/" component={HomePage}/>
     <Route exact path="/login" component={LoginPage}/>
+    <Route exact path="/upload" component={UploadPage}/>
   </Suspense>
+
   );
 }
 
