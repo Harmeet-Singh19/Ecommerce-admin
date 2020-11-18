@@ -9,8 +9,9 @@ export default async ({
 	onError = undefined,
 	noToken = undefined
 }) => {
-	console.log(body)
+	//console.log(body)
 	let token = await localStorage.getItem('token')
+	token=`eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjljNDA3YmRhMTYyOTJhM2MzN2IxMjYiLCJpYXQiOjE2MDU2MzkyMzl9.XxIKLVS_-nPgnx4y43OWRYIz9zuy2ofCObCb0mC_YXg`
 	if (token === null && noToken) {
 		noToken()
 		return

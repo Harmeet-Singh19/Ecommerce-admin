@@ -1,0 +1,53 @@
+.get-user {
+    color: #fff;
+}
+
+.allUsers table {
+    width: 100%;
+    padding: 0% 1%;
+    border-collapse: 0;
+}
+
+.allUsers tr {
+    outline: thin solid;
+    width: 100%;
+}
+
+.allUsers tr:nth-child(odd) {}
+
+.allUsers th {
+    text-align: center;
+    padding: 1% 0%;
+
+}
+
+.allUsers td {
+    text-align: center;
+    padding: 1% 0%;
+    font-size: 1.1em;
+    width: 20px;
+}
+
+.allUsers .roles {
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.allUsers .edit {
+    width: 8%;
+    text-align: center;
+}
+
+.allUsers .icon {
+    font-size: 1em;
+}
+
+.allUsers .rowForm {
+    max-width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    height: max-content;
+}
