@@ -24,7 +24,7 @@ class Upload extends Component {
         seller:"",
         vendors:[]
     }
-    addBook=async(urls)=>{
+    updateBook=async(urls)=>{
         await this.setState({ isLoading: true })
         await doRequest({
             url: `/admin/book/add`,
@@ -60,7 +60,7 @@ class Upload extends Component {
         return vendors
     }
 
-    addImages=async () =>{
+    updateImages=async () =>{
         await this.setState({ isLoading: true })
  
     let token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjljNDA3YmRhMTYyOTJhM2MzN2IxMjYiLCJpYXQiOjE2MDU2MzkyMzl9.XxIKLVS_-nPgnx4y43OWRYIz9zuy2ofCObCb0mC_YXg`
@@ -69,7 +69,7 @@ class Upload extends Component {
     for(var x = 0; x<this.state.image.length; x++) {
         data.append('file', this.state.image[x])
     }
-        axios.post(`https://du-book-server.herokuapp.com/api/admin/book/image/add`, data, {
+        axios.post(`http://localhost:4000/api/admin/book/image/add`, data, {
             headers: {
                 
                 Authorization: token
@@ -85,6 +85,14 @@ class Upload extends Component {
                 this.setState({ isLoading: false })
             })
 }
+deleteBook = async e => {
+    this.setState({ isLoading: true })
+    await doRequest({
+      url: `/admin/book/${this.props.match.params.id}`,
+      method: "delete",
+      onSuccess: () => this.props.history.goBack()
+    });
+  }
 
 
     fileValidate = async(e) => {
