@@ -10,6 +10,7 @@ import('./pages/login_page/loginScreen'))
 const HomePage=lazy(()=>import('./pages/home_page/Admin'))
 const UploadPage = lazy(()=> import('./pages/upload_books/Upload'))
 const AddAdminPage = lazy(() => import('./pages/add_admin_page/AddAdmin'))
+const GetUserPage = lazy(()=>import('./pages/get_users_page/GetUser'))
 
 function App() {
   return (
@@ -24,6 +25,8 @@ function App() {
     <Route exact path="/login" component={LoginPage}/>
     <Route exact path="/upload" component={UploadPage}/>
     <Route exact path="/addadmin" component={AddAdminPage}/>
+    <Route exact path="/getuser" component={GetUserPage}/>
+
   </Suspense>
 
   );
