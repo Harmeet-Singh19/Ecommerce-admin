@@ -23,6 +23,14 @@
     align-items: center;
     align-content: center;
 }
+.checkBox {
+	width: max-content;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 2px 10px;
+}
+
 
 
 input {
@@ -32,7 +40,7 @@ input {
 
 .form input,
 .form select {
-    width: 100%;
+    
     padding: 15px;
     padding-left: 16px;
     font-size: 0.7rem;
