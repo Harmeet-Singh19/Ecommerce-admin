@@ -1,9 +1,32 @@
 import React, { Component } from "react";
-
+import doRequest from "../../utils/requestHooks";
 import styles from "./Login.module.css";
 
 
 class Login extends Component {
+
+    constructor(props){
+        super(props);
+        this.state={
+            cred:"",
+            password:""
+        }
+    }
+
+    handleLogin = async e => {
+        e.preventDefault();
+        console.log(this.state)
+        await doRequest({
+            url: "/admin/auth/login",
+            method: "post",
+            body: { ...this.state },
+            onSuccess: ({ data }) => {
+                localStorage.setItem("token", data.token)
+                this.props.history.push("/")
+            },
+            onError: (err) => alert(err),
+        });
+    };
    
     render() {
         return (
@@ -23,6 +46,7 @@ class Login extends Component {
                                         <label style={{width:"100%"}}>
                                             Email:
                                                  <input type="email" placeholder="Enter your registered email"
+                                                        onChange={e => this.setState({ cred: e.target.value })}
                                                             className="form-control"
                                                             required/>
                                         </label>
@@ -32,6 +56,7 @@ class Login extends Component {
                                     <label style={{width:"100%"}}>
                                         Password:
                                          <input type="password" placeholder="Enter your password"
+                                                        onChange={e => this.setState({ password: e.target.value })}
                                                             className="form-control"
                                                             required/>
                                     </label>
