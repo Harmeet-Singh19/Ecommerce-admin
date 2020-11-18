@@ -4,6 +4,7 @@ import './GetUser.css'
 import Loader from "react-loader-spinner"
 import data2 from '../../config'
 
+// eslint-disable-next-line
 export default ({ history }) => {
     const [data, setdata] = useState([])
     const [isLoading, setisLoading] = useState(true)
@@ -11,7 +12,7 @@ export default ({ history }) => {
 
     let getUsers = async () => {
         await doRequest({
-          url: `/admin/users/`,
+          url: `/admin/user/`,
           method: "get",
           onSuccess: (data) => {
             setdata([...data])
@@ -27,7 +28,7 @@ export default ({ history }) => {
 
     let downloadCSV = async () => {
         await doRequest({
-          url: `/admin/users/downloadusers`,
+          url: `/admin/user/downloadusers`,
           method: "get",
           onSuccess: (data) => {
             console.log(data)
@@ -56,7 +57,7 @@ export default ({ history }) => {
         : (
           <div className="allUsers">
             <div className="rowForm">
-              <a className="secButton" href={`${data2.url}/api/admin/users/downloadusers`} target="__blank">
+              <a className="secButton" href={`${data2.url}/api/admin/user/downloadusers`} target="__blank">
                 Download CSV
               </a>
             </div>

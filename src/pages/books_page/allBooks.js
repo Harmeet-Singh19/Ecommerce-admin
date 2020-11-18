@@ -55,22 +55,25 @@ class AllBook extends Component{
             <div>
                 {this.state.isLoading?
                     (<center>
-                        <Loader type='ThreeDots' color='#f08080' height={150} width={150} />
+                        <Loader type='ThreeDots' color='yellow' height={250} width={250} />
                     </center>)
-                    : (<div className="MenuPageStyle">
+                    : (<div className="MenuPageStyle" style={{color:"yellow"}}>
                         <div className="primaryButton" onClick={() => this.props.history.push("book/add")}>
-                            Add Dish
+                            Add Book
           </div>
                         <div className="dishRow">
                             {this.state.data.map((book, index) => {
                                 return (
                                     <div className="dishCard" key={index}>
                                         <div className="dishImage">
-                                            <img src={book.image} alt="No Image Uploaded" />
+                                            {book.image.map((imag)=>(
+                                                <img src={imag} alt="No Image Uploaded" width={100} height={100} />
+                                            ))}
+                                            
                                         </div>
                                         <h3>{book.name}</h3>
                                         <h4>Price : {book.price}</h4>
-                                        <div className="editDish" onClick={() => { this.props.history.push(`/book/${book._id}`) }}>
+                                        <div className="editDish" onClick={() => { this.props.history.push(`/books/${book._id}`) }}>
                                             Edit
                     </div>
                                     </div>
