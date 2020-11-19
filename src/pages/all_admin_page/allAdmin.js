@@ -1,15 +1,34 @@
 import React, { useEffect, useState } from "react";
-import doRequest from "../../../utils/requestHooks";
+import doRequest from "../../utils/requestHooks";
 // import "./all_admins_page.css";
-import TopBar from "../../../components/topBar/topbar";
+import TopBar from "../../components/Header/Header";
 import { FaPencilAlt } from "react-icons/fa";
 import Loader from "react-loader-spinner"
 import { connect } from 'react-redux';
-import { getUser } from "../../../actions/userActions";
+
+const setUser = (user) => {
+    // console.log(user)
+    return {
+      type: 'SET_USER',
+      user
+    }
+  }
+  
+  const getUser = () => async (dispatch) => {
+    await doRequest({
+      url: "/admin/auth/verify",
+      method: "get",
+      onSuccess: async (data) => {
+        // console.log(data)
+        dispatch(setUser(data))
+      },
+    });
+  };
 
 const AllAdminPage = ({ user, history, getUser }) => {
   const [data, setdata] = useState([])
   const [isLoading, setisLoading] = useState(true)
+ 
   useEffect(() => {
     if (!user.admin)
       getUser()
@@ -43,30 +62,26 @@ const AllAdminPage = ({ user, history, getUser }) => {
       <TopBar history={history} />
       {isLoading ?
         (<center>
-          <Loader type='ThreeDots' color='#f08080' height={150} width={150} />
+          <Loader type='ThreeDots' color='yellow' height={150} width={150} />
         </center>)
         : (<div className="allAdmins">
           <div className="addOptions">
-            {user.admin.roles.includes("create_admin") ?
+           
               <button className="primaryButton" onClick={() => history.push("/admins/add")}>
-                Add User
+                Add Admin/Vendor
               </button>
-              :
-              <></>
-            }
+            
+            
           </div>
-          <div style={{ overflowX: "auto", width: "100vw" }}>
+          <div style={{ overflowX: "auto", width: "100vw",color:"yellow" }}>
             <table>
               <thead>
                 <tr>
                   <th>Name</th>
                   <th>Email Id</th>
                   <th>Phone Number</th>
-                  <th>Roles</th>
-                  {user.admin.roles.includes("assign_roles") ?
-                    <th className="edit">Edit</th> :
-                    <></>
-                  }
+                  <th>Type of Admin</th>
+                  
                 </tr>
               </thead>
               <tbody>
@@ -75,15 +90,15 @@ const AllAdminPage = ({ user, history, getUser }) => {
                     <td>{admin.name}</td>
                     <td>{admin.email}</td>
                     <td>{admin.phone}</td>
-                    <td className="roles">{admin.roles.map((role, index) => {
-                      return (<span key={index}>{role}{", "}</span>)
-                    })}</td>
-                    {user.admin.roles.includes("assign_roles") ?
+                  <td>{(admin.isVendor===false)?(
+                      "SuperAdmin"
+                  ):("Vendor")}</td>
+                    
+                    {
                       <td className="edit" onClick={() => history.push(`/admin/${admin._id}`)}>
                         <FaPencilAlt className="icon" />
                       </td>
-                      :
-                      <></>
+                     
                     }
                   </tr>)
                 })}
@@ -97,9 +112,9 @@ const AllAdminPage = ({ user, history, getUser }) => {
   )
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
-    user: state.currentUser.user
+    user: state.user.user
   }
 }
 

@@ -15,7 +15,7 @@ const AllAdminPage = ({ user, history, getUser }) => {
       getUser()
     let func = async () => {
       await doRequest({
-        url: "/admin/auth/all-admins",
+        url: "/admin/logs/all-admins",
         method: "get",
         onSuccess: (data) => {
           setdata([...data])
