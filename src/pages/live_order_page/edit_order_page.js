@@ -22,7 +22,7 @@ class EditLiveOrderPage extends Component {
     updateStatus = async () => {
         // e.preventDefault();
         await doRequest({
-            url: `/admin/orders/${this.props.match.params.id}`,
+            url: `/admin/order/${this.props.match.params.id}`,
             method: "put",
             body: { orderStatus: this.state.orderStatus },
             onSuccess: () => this.props.history.goBack(),
@@ -46,14 +46,7 @@ class EditLiveOrderPage extends Component {
         this.updateStatus();
     }
 
-    assignDeliveryTo = async () => {
-        await doRequest({
-            url: `/admin/orders/assignDelivery/${this.props.match.params.id}`,
-            method: "put",
-            body: { assignDelivery: this.state.courier },
-            onError: (err) => { alert(err) },
-        });
-    }
+}
 
     componentDidMount = async () => {
         await doRequest({
