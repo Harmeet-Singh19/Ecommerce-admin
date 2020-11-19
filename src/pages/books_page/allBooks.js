@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import doRequest from "../../utils/requestHooks";
 import Loader from "react-loader-spinner"
-import './allBooks.module.css'
+import styles from "./allBooks.module.css";
 
 //actions part
 
@@ -24,12 +24,6 @@ const getBooks = () => async (dispatch) => {
 
     });
 }
-
-
-
-
-
-
 
 class AllBook extends Component{
     constructor(props){
@@ -57,15 +51,18 @@ class AllBook extends Component{
                     (<center>
                         <Loader type='ThreeDots' color='yellow' height={250} width={250} />
                     </center>)
-                    : (<div className="MenuPageStyle" style={{color:"yellow"}}>
-                        <div className="primaryButton" onClick={() => this.props.history.push("book/add")}>
-                            Add Book
-          </div>
-                        <div className="dishRow">
+                    : (<div className={styles.MenuPageStyle} style={{color:"white"}}>
+
+                        <div className = {styles.primaryButtonContainer}>
+                            <div className={styles.primaryButton} onClick={() => this.props.history.push("book/add")}>
+                                Add Book
+                            </div>
+                        </div>
+                        <div className={styles.bookRow}>
                             {this.state.data.map((book, index) => {
                                 return (
-                                    <div className="dishCard" key={index}>
-                                        <div className="dishImage">
+                                    <div className={styles.bookCard} key={index}>
+                                        <div className={styles.bookImage}>
                                             {book.image.map((imag)=>(
                                                 <img src={imag} alt="No Image Uploaded" width={100} height={100} />
                                             ))}
@@ -73,7 +70,7 @@ class AllBook extends Component{
                                         </div>
                                         <h3>{book.name}</h3>
                                         <h4>Price : {book.price}</h4>
-                                        <div className="editDish" onClick={() => { this.props.history.push(`/books/${book._id}`) }}>
+                                        <div className={styles.editBook} onClick={() => { this.props.history.push(`/books/${book._id}`) }}>
                                             Edit
                     </div>
                                     </div>
