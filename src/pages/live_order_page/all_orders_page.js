@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-// import "./order_pages.css";
-// import "./toggleLive.css"
+ import styles from "./order_page.module.css";
+ import "./toggleLive.module.css"
 import doRequest from "../../utils/requestHooks";
 
 import { FaPencilAlt } from "react-icons/fa";
@@ -56,7 +56,7 @@ export default ({ history }) => {
                 (<center>
                     <Loader type='ThreeDots' color='yellow' height={150} width={150} />
                 </center>)
-                : (<div className="allOrders" style={{color:"yellow"}}>
+                : (<div className={styles.allOrders_v} >
 
                     {/* <h2>Accepting Live Orders</h2>
                     <label className="switch">
@@ -66,18 +66,18 @@ export default ({ history }) => {
                         <span className="slider round"></span>
                     </label> */}
 
-                    <h2>Placed Orders</h2>
-                    <div className="typeRow placed">
+                    <h2 style={{textAlign:"center",backgroundColor:"black"}}>Placed Orders</h2>
+                    <div className={styles.typeRow}>
                         {placed.map((order, index) => {
                             //console.log(order)
                             return (
-                                <div className="card h-300" style={{ maxHeight: "300px", minWidth: "300px", overflowY: "scroll" }} key={index}>
+                                <div className={styles.orderCard} key={index}>
                                     <p>OrderId: <span>{order.orderId}</span></p>
                                     <p>Placed At: <span>{DateString(order.placedAt)}</span></p>
-                                    <p>Placed By: <span>{order.userId.name}</span></p>
+                                    <p>Placed By:  <span>{order.userId.name}</span></p>
                                     <p>Phone Number: <span>{order.userId.phone}</span></p>
-                                    <p>Address: <span>{order.address.address}</span></p>
-                                    <div className="edit" onClick={() => history.push(`/liveorders/${order._id}`)}>
+                                    <p>Address:  <span>{order.address.address}</span></p>
+                                    <div className={styles.editt} onClick={() => history.push(`/liveorders/${order._id}`)}>
                                         <FaPencilAlt className="icon" />
                                     </div>
                                     <p>Books: </p>
@@ -90,17 +90,17 @@ export default ({ history }) => {
                             )
                         })}
                     </div>
-                    <h2>Confirmed Orders</h2>
-                    <div className="typeRow confirmed">
+                    <h2 style={{ textAlign: "center", backgroundColor: "black" }}>Confirmed Orders</h2>
+                    <div className={styles.typeRow}>
                         {confirmed.map((order, index) => {
                             return (
-                                <div className="card" style={{ maxHeight: "300px", minWidth: "300px", overflowY: "scroll" }} key={index}>
+                                <div className={styles.orderCard} key={index}>
                                     <p>OrderId: <span>{order.orderId}</span></p>
                                     <p>Placed At: <span>{DateString(order.placedAt)}</span></p>
                                     <p>Placed By: <span>{order.userId.name}</span></p>
                                     <p>Phone Number: <span>{order.userId.phone}</span></p>
                                     <p>Address: <span>{order.address.address}</span></p>
-                                    <div className="edit" onClick={() => history.push(`/liveorders/${order._id}`)}>
+                                    <div className={styles.editt} onClick={() => history.push(`/liveorders/${order._id}`)}>
                                         <FaPencilAlt className="icon" />
                                     </div>
                                     <p>Books: </p>
@@ -113,17 +113,17 @@ export default ({ history }) => {
                             )
                         })}
                     </div>
-                    <h2>Orders Out for Delivery</h2>
-                    <div className="typeRow out_for_delivery">
+                    <h2 style={{ textAlign: "center", backgroundColor: "black" }}>Orders Out for Delivery</h2>
+                    <div className={styles.typeRow}>
                         {outford.map((order, index) => {
                             return (
-                                <div className="card" style={{ maxHeight: "300px", minWidth: "300px", overflowY: "scroll" }} key={index}>
+                                <div className={styles.orderCard} key={index}>
                                     <p>OrderId: <span>{order.orderId}</span></p>
                                     <p>Placed At: <span>{DateString(order.placedAt)}</span></p>
                                     <p>Placed By: <span>{order.userId.name}</span></p>
                                     <p>Phone Number: <span>{order.userId.phone}</span></p>
                                     <p>Address: <span>{order.address.address}</span></p>
-                                    <div className="edit" onClick={() => history.push(`/liveorders/${order._id}`)}>
+                                    <div className={styles.editt} onClick={() => history.push(`/liveorders/${order._id}`)}>
                                         <FaPencilAlt className="icon" />
                                     </div>
                                     <p>Books: </p>

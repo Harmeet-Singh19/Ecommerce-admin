@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import doRequest from "../../utils/requestHooks";
+import styles from './edit_order_page.module.css'
 
 import Loader from "react-loader-spinner";
 import DateString from "../../utils/dateUtil";
@@ -35,6 +36,8 @@ class EditLiveOrderPage extends Component {
         this.updateStatus();
     }
 
+    
+
     cancelOrder = async (e) => {
         e.preventDefault();
         await this.setState({ orderStatus: "cancelled" })
@@ -43,6 +46,11 @@ class EditLiveOrderPage extends Component {
 
     orderOutforDelivery = async () => {
         await this.setState({ orderStatus: "out_for_delivery" })
+        this.updateStatus();
+    }
+
+    orderDelivered = async () => {
+        await this.setState({orderStatus:"delivered"})
         this.updateStatus();
     }
 
@@ -75,47 +83,54 @@ class EditLiveOrderPage extends Component {
                     <center>
                         <Loader type='ThreeDots' color='#f08080' height={150} width={150} />
                     </center>
-                ) : (
-                        <div className="orderPage" style={{color:"yellow"}}>
-
-                            <div className="detailsRow">
-                                <div>
+                ) : (   
+                        <div className={styles.allOrders_v}>
+                        <div className={styles.InfoCard} >
+                                {/* detailsRow */}
+                                <div className={styles.typeRow}>
+                                    <div className={styles.typeRow}>
                                     <h2>User Details</h2>
-                                    <p>Name: {this.state.userId.name}</p>
-                                    <p>Phone Number: {this.state.userId.phone}</p>
-                                    <p>Email: {this.state.userId.email}</p>
+                                        <p>Name: <span>{this.state.userId.name}</span></p>
+                                        <p>Phone Number: <span>{this.state.userId.phone}</span></p>
+                                    <p>Email: <span>{this.state.userId.email}</span></p>
 
                                 </div>
-                                <div>
+                                    <div className={styles.typeRow}>
                                     <h2>Order Details</h2>
-                                    <p>Order Type : {this.state.orderType}</p>
-                                    <p>Delivery Address: {this.state.address.address}</p>
-                                    <p>Order Placed on: {DateString(this.state.placedAt)}</p>
-                                    <p>Order Status: {this.state.orderStatus}</p>
+                                        <p>Order Type : <span>{this.state.orderType}</span></p>
+                                        <p>Delivery Address: <span>{this.state.address.address}</span></p>
+                                        <p>Order Placed on: <span>{DateString(this.state.placedAt)}</span></p>
+                                        <p>Order Status: <span>{this.state.orderStatus}</span></p>
                                 </div>
                             </div>
-
-                            <div className="generateRow">
+                            {/* generateRow */}
+                            <div className={styles.buttonCont}>
                                 {this.state.orderStatus === "placed" ?
                                     (
                                         <>
-                                            <button className="primaryButton" onClick={this.confirmOrder}>
+                                            <button className={styles.standardButton} onClick={this.confirmOrder}>
                                                 Confirm Order
-                      </button>
-                                            <div className="dataListRow">
+
+                                                {/* list="cancelReason" */}
+                                                </button>             
+                                                {/* dataListRow */}
+                                            {/* <div className=""> */}
                                                 <form onSubmit={this.cancelOrder}>
-                                                    <input type="text" list="cancelReason" placeholder="Reason to Cancel Order" onChange={e => this.setState({
+                                                    <input type="text" style={{ width: "70%",height:"20px",margin:"10px 15%",color:"white" }} placeholder="Reason to Cancel Order" onChange={e => this.setState({
                                                         cancelReason: e.target.value
                                                     })} required />
-                                                    <datalist id="cancelReason">
+                                                    <br></br>
+                                                    {/* <datalist id="cancelReason">
                                                         <option value="Raw Materials not available">Raw Materials not available</option>
                                                         <option value="Other Reason">Other Reason</option>
-                                                    </datalist>
-                                                    <button className="primaryButton">
+                                                    </datalist> */}
+                                                    <div style={{display:"flex", alignContent:"center", alignItems:"center",backgroundColor:"black"}}>
+                                                    <button className={styles.standardButton} style={{ margin: "0 45%" }}>
                                                         Cancel Order
                           </button>
+                                                    </div>
                                                 </form>
-                                            </div>
+                                            {/* </div> */}
                                         </>
                                     ) : (<></>)}
 
@@ -127,39 +142,75 @@ class EditLiveOrderPage extends Component {
 
                                         <a className="secButton" href={`/invoice/${this.props.match.params.id}`} target="__blank">
                                             Generate Invoice
-                    </a>
+                                        </a>
 
-                                        {/* {this.state.assignDelivery === "" ? (
-                                            <div className="dataListRow">
-                                                <form onSubmit={this.assignDeliveryTo}>
-                                                    <input type="text" list="assignDelivery" placeholder="Select person to deliver" onChange={async (e) => {
-                                                        let val = e.target.value;
-                                                        // console.log(val.split("-")[1])
-                                                        await this.setState({ courier: val.split("-")[1] })
-                                                        console.log(this.state.courier)
-                                                    }} required />
-                                                    <datalist id="assignDelivery">
-                                                        {this.state.deliveryPerson.map((person, index) => {
-                                                            if (person.roles.includes("delivery")) {
-                                                                return (
-                                                                    <option key={index} value={`${person.name}-${person._id}`}>{person.name}</option>
-                                                                )
-                                                            }
-                                                        })}
-                                                    </datalist>
-                                                    <button className="primaryButton">
-                                                        Assign Delivery
+                                        <button className={styles.standardButton} onClick={this.orderOutforDelivery}>
+                                            Out for delivery
+
+                                                {/* list="cancelReason" */}
+                                        </button>
+                                        {/* dataListRow */}
+                                        <div className="">
+                                            <form onSubmit={this.cancelOrder}>
+                                                    <input type="text" style={{ width: "70%",height:"20px",margin:"10px 15%",color:"white" }} placeholder="Reason to Cancel Order" onChange={e => this.setState({
+                                                    cancelReason: e.target.value
+                                                    
+                                                })} required />
+                                                {/* <datalist id="cancelReason">
+                                                        <option value="Raw Materials not available">Raw Materials not available</option>
+                                                        <option value="Other Reason">Other Reason</option>
+                                                    </datalist> */}
+                                                    <div style={{display:"flex", alignContent:"center", alignItems:"center",backgroundColor:"black"}}>
+                                                <button className={styles.standardButton} style={{margin:"0 45%"}}>
+                                                    Cancel Order
+
                           </button>
-                                                </form>
-                                            </div>
-                                        ) : (<> <h3>Delivery Assigned to {this.state.assignDelivery.name}</h3>
+                          </div>
+                                            </form>
+                                        </div>                                        
 
-                                            <button className="primaryButton" onClick={this.orderOutforDelivery}>
-                                                Mark out for Delivery
-                        </button>
-                                        </>)} */}
                                     </> : (<> </>)
                                 }
+
+
+                                {this.state.orderStatus === "out_for_delivery" ?
+                                    <>
+                                        {                    /*<a className="secButton" href={`/packageslip/${this.props.match.params.id}`} target="__blank">
+                      Generate Packing Slip
+                    </a>*/}
+
+                                        <a className="secButton" href={`/invoice/${this.props.match.params.id}`} target="__blank">
+                                            Generate Invoice
+                                        </a>
+
+                                        <button className={styles.standardButton} onClick={this.orderDelivered}>
+                                            Order Delivered
+
+                                                {/* list="cancelReason" */}
+                                        </button>
+                                        {/* dataListRow */}
+                                        <div className="">
+                                            <form onSubmit={this.cancelOrder}>
+                                                    <input type="text" style={{ width: "70%",height:"20px",margin:"10px 15%",color:"white" }} placeholder="Reason to Cancel Order" onChange={e => this.setState({
+                                                    cancelReason: e.target.value
+                                                })} required />
+                                                {/* <datalist id="cancelReason">
+                                                        <option value="Raw Materials not available">Raw Materials not available</option>
+                                                        <option value="Other Reason">Other Reason</option>
+                                                    </datalist> */}
+                                                    <div style={{display:"flex", alignContent:"center", alignItems:"center",backgroundColor:"black"}}>
+                                                        <button className={styles.standardButton} >
+                                                            Cancel Order
+                          </button>
+
+                                                    </div>
+                                                    
+                                            </form>
+                                        </div>
+
+                                    </> : (<> </>)
+                                }
+
 
                                 {/* {this.state.orderStatus === "out_for_delivery" ?
                                     <h3>Delivery Assigned to {this.state.assignDelivery.name}</h3>
@@ -167,23 +218,24 @@ class EditLiveOrderPage extends Component {
                                 } */}
                             </div>
 
-                            <h3>Ordered Books</h3>
-                            <div className="dishRow">
+                                <h3 style={{ backgroundColor: "black" }}>Ordered Books</h3>
+                                <div className="dishRow" style={{backgroundColor:"black"}}>
                                 {this.state.books.map((book, index) => {
                                     return (
-                                        <div className="dishCard" key={index}>
-                                            <div className="dishImage">
+                                        <div className="dishCard" style={{ backgroundColor: "black" }} key={index}>
+                                            <div className="dishImage" style={{ backgroundColor: "black" }}>
                                                 {book.book.image.map((imag) => (
                                                     <img src={imag} alt="No Image Uploaded" width={100} height={100} />
                                                 ))}
                                                 {/* <img src={book.bookId.image} alt="No Image Uploaded" /> */}
                                             </div>
-                                            <h3>{book.bookRef}</h3>
-                                            <h4>Price : {`${book.book.name} x ${book.quantity} = ${(book.billedPrice) * (book.quantity)}`}</h4>
+                                            <h3 style={{ backgroundColor: "black" }}>{book.bookRef}</h3>
+                                            <h4 style={{ backgroundColor: "black" }}>Price : {`${book.book.name} x ${book.quantity} = ${(book.billedPrice) * (book.quantity)}`}</h4>
                                         </div>
                                     )
                                 })}
                             </div>
+                        </div>
                         </div>
                     )}
             </>
