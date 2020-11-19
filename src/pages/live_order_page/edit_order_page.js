@@ -57,7 +57,7 @@ class EditLiveOrderPage extends Component {
 
     componentDidMount = async () => {
         await doRequest({
-            url: `/admin/orders/${this.props.match.params.id}`,
+            url: `/admin/order/${this.props.match.params.id}`,
             method: "get",
             onSuccess: async (data) => {
                 delete data.__v;
@@ -67,14 +67,6 @@ class EditLiveOrderPage extends Component {
             noToken: () => this.props.history.push("/login")
         });
 
-        await doRequest({
-            url: "/admin/logs/all-admins",
-            method: "get",
-            onSuccess: async (data) => {
-                await this.setState({ deliveryPerson: data })
-            },
-            onError: (err) => { },
-        });
     }
 
     componentDidUpdate = () => {
@@ -91,7 +83,7 @@ class EditLiveOrderPage extends Component {
                         <Loader type='ThreeDots' color='#f08080' height={150} width={150} />
                     </center>
                 ) : (
-                        <div className="orderPage">
+                        <div className="orderPage" style={{color:"yellow"}}>
 
                             <div className="detailsRow">
                                 <div>
@@ -188,13 +180,13 @@ class EditLiveOrderPage extends Component {
                                     return (
                                         <div className="dishCard" key={index}>
                                             <div className="dishImage">
-                                                {book.bookId.image.map((imag) => (
+                                                {book.book.image.map((imag) => (
                                                     <img src={imag} alt="No Image Uploaded" width={100} height={100} />
                                                 ))}
                                                 {/* <img src={book.bookId.image} alt="No Image Uploaded" /> */}
                                             </div>
                                             <h3>{book.bookRef}</h3>
-                                            <h4>Price : {`${book.bookId.name} x ${book.quantity} = ${(book.billedPrice) * (book.quantity)}`}</h4>
+                                            <h4>Price : {`${book.book.name} x ${book.quantity} = ${(book.billedPrice) * (book.quantity)}`}</h4>
                                         </div>
                                     )
                                 })}

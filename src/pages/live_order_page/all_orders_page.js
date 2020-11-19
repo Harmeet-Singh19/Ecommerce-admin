@@ -9,13 +9,15 @@ import DateString from "../../utils/dateUtil";
 // import io from "socket.io-client";
 import data2 from '../../config'
 
+ // eslint-disable-next-line
 export default ({ history }) => {
-    const [data, setdata] = useState({})
+    const [confirmed,setconfirmed]=useState([])
+    const [placed,setplaced]=useState([])
+    const [outford,setoutford]=useState([])
     const [isLoading, setisLoading] = useState(false)
-    // const [accepting, setaccepting] = useState(false)
-    const [restaurandId, setrestaurantId] = useState("")
 
-    console.dir(data);
+
+   // console.dir(data);
 
     let getOrders = async () => {
        
@@ -23,10 +25,15 @@ export default ({ history }) => {
         await doRequest({
             url: `/admin/order/live/orders`,
             method: "get",
-            onSuccess: (data) => {
-                setdata({ ...data })
-                 console.log('hello')
+            onSuccess: async(data) => {
+                await setplaced(data.placed) 
+                 
                 // console.log(DateString(data.placedAt))
+                console.log(data.placed)
+                await setplaced(data.placed) 
+                await setconfirmed(data.confirmed)
+                await setoutford(data.out_for_delivery)
+                console.log(placed)
                 setisLoading(false)
             },
             onError: (err) => {
@@ -38,10 +45,8 @@ export default ({ history }) => {
 
     }
 
-    useEffect(async ()=>{
-        await getOrders()
-
-    },[])
+    useEffect(() => { setisLoading(true); getOrders() }, [])
+    useEffect(() => { console.log(placed) }, [placed])
     
 
     return (
@@ -49,9 +54,9 @@ export default ({ history }) => {
             
             {isLoading ?
                 (<center>
-                    <Loader type='ThreeDots' color='#f08080' height={150} width={150} />
+                    <Loader type='ThreeDots' color='yellow' height={150} width={150} />
                 </center>)
-                : (<div className="allOrders">
+                : (<div className="allOrders" style={{color:"yellow"}}>
 
                     {/* <h2>Accepting Live Orders</h2>
                     <label className="switch">
@@ -63,8 +68,8 @@ export default ({ history }) => {
 
                     <h2>Placed Orders</h2>
                     <div className="typeRow placed">
-                        {data.placed.map((order, index) => {
-                            console.log(order)
+                        {placed.map((order, index) => {
+                            //console.log(order)
                             return (
                                 <div className="card h-300" style={{ maxHeight: "300px", minWidth: "300px", overflowY: "scroll" }} key={index}>
                                     <p>OrderId: <span>{order.orderId}</span></p>
@@ -76,9 +81,9 @@ export default ({ history }) => {
                                         <FaPencilAlt className="icon" />
                                     </div>
                                     <p>Books: </p>
-                                    <>{order.dishes.map((book, index) => {
+                                    <>{order.books.map((book, index) => {
                                         return (
-                                            <li key={index}>{book.bookId.name} x {book.quantity}</li>
+                                            <li key={index}>{book.book.name} x {book.quantity}</li>
                                         )
                                     })}</>
                                 </div>
@@ -87,7 +92,7 @@ export default ({ history }) => {
                     </div>
                     <h2>Confirmed Orders</h2>
                     <div className="typeRow confirmed">
-                        {data.confirmed.map((order, index) => {
+                        {confirmed.map((order, index) => {
                             return (
                                 <div className="card" style={{ maxHeight: "300px", minWidth: "300px", overflowY: "scroll" }} key={index}>
                                     <p>OrderId: <span>{order.orderId}</span></p>
@@ -99,9 +104,9 @@ export default ({ history }) => {
                                         <FaPencilAlt className="icon" />
                                     </div>
                                     <p>Books: </p>
-                                    <>{order.dishes.map((book, index) => {
+                                    <>{order.books.map((book, index) => {
                                         return (
-                                            <li key={index}>{book.bookId.name} x {book.quantity}</li>
+                                            <li key={index}>{book.book.name} x {book.quantity}</li>
                                         )
                                     })}</>
                                 </div>
@@ -110,7 +115,7 @@ export default ({ history }) => {
                     </div>
                     <h2>Orders Out for Delivery</h2>
                     <div className="typeRow out_for_delivery">
-                        {data.out_for_delivery.map((order, index) => {
+                        {outford.map((order, index) => {
                             return (
                                 <div className="card" style={{ maxHeight: "300px", minWidth: "300px", overflowY: "scroll" }} key={index}>
                                     <p>OrderId: <span>{order.orderId}</span></p>
@@ -122,9 +127,9 @@ export default ({ history }) => {
                                         <FaPencilAlt className="icon" />
                                     </div>
                                     <p>Books: </p>
-                                    <>{order.dishes.map((book, index) => {
+                                    <>{order.books.map((book, index) => {
                                         return (
-                                            <li key={index}>{book.bookId.name} x {book.quantity}</li>
+                                            <li key={index}>{book.book.name} x {book.quantity}</li>
                                         )
                                     })}</>
                                 </div>
