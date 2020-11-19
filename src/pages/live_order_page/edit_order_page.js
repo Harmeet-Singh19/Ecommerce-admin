@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import doRequest from "../../utils/requestHooks";
 import styles from './edit_order_page.module.css'
-
+import TopBar from "../../components/Header/Header";
 import Loader from "react-loader-spinner";
 import DateString from "../../utils/dateUtil";
 
@@ -78,7 +78,7 @@ class EditLiveOrderPage extends Component {
 
         return (
             <>
-               
+               <TopBar history={this.props.history}/>
                 {this.state.isLoading ? (
                     <center>
                         <Loader type='ThreeDots' color='#f08080' height={150} width={150} />

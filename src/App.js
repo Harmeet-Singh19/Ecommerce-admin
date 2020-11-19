@@ -12,6 +12,7 @@ const HomePage=lazy(()=>import('./pages/home_page/Admin'))
 const UploadPage = lazy(()=> import('./pages/upload_books/Upload'))
 const AddAdminPage = lazy(() => import('./pages/add_admin_page/AddAdmin'))
 const AllAdminPage=lazy(()=>import('./pages/all_admin_page/allAdmin'))
+const EditAdminPage=lazy(()=>import('./pages/edit_admin_page/EditAdmin'))
 const GetUserPage = lazy(()=>import('./pages/get_users_page/GetUser'))
 const EditPage= lazy(()=>import('./pages/edit_books/edit_book'))
 const AllLiveOrdersPage = lazy(() =>
@@ -41,6 +42,7 @@ function App() {
     <Route exact path="/books/:id" component={EditPage}/>
     <Route exact path="/add/admins" component={AddAdminPage}/>
     <Route exact path="/admins" component={AllAdminPage}/>
+    <Route exact path="/admins/:id" component={EditAdminPage}/>
     <Route exact path="/getusers" component={GetUserPage}/>
     <Route exact path='/liveorders' component={AllLiveOrdersPage} />
     <Route exact path='/liveorders/:id' component={EditLiveOrderPage} />

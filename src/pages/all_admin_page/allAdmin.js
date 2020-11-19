@@ -95,7 +95,7 @@ const AllAdminPage = ({ user, history, getUser }) => {
                   ):("Vendor")}</td>
                     
                     {
-                      <td className="edit" onClick={() => history.push(`/admin/${admin._id}`)}>
+                      <td className="edit" onClick={() => history.push(`/admins/${admin._id}`)}>
                         <FaPencilAlt className="icon" />
                       </td>
                      

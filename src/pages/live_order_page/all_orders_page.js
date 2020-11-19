@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
  import styles from "./order_page.module.css";
  import "./toggleLive.module.css"
 import doRequest from "../../utils/requestHooks";
-
+import TopBar from "../../components/Header/Header";
 import { FaPencilAlt } from "react-icons/fa";
 import Loader from "react-loader-spinner"
 import DateString from "../../utils/dateUtil";
@@ -51,7 +51,7 @@ export default ({ history }) => {
 
     return (
         <>
-            
+            <TopBar history={history}/>
             {isLoading ?
                 (<center>
                     <Loader type='ThreeDots' color='yellow' height={150} width={150} />

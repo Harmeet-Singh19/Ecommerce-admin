@@ -4,3 +4,4 @@ const data2 = {
 
 export default data2;
 //https://du-book-server.herokuapp.com/
+//http://localhost:4000

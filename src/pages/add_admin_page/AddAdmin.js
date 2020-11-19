@@ -13,12 +13,12 @@ export default class AddAdmin extends Component {
         isVendor:"false",
         isStudentVendor:"false"
     }
-    addAdmin = async e => {
+    updateAdmin = async e => {
         e.preventDefault();
         const { phone, email, password, name,address,isVendor,isStudentVendor } = this.state;
         await doRequest({
           url: `/admin/auth/add-admin`,
-          method: "post",
+          method: "put",
           body:{ phone, email, password, name,address,isVendor,isStudentVendor },
           onSuccess: () => this.props.history.goBack(),
           onError: (err) => { alert(err) },
