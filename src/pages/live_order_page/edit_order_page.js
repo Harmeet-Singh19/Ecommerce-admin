@@ -46,7 +46,7 @@ class EditLiveOrderPage extends Component {
         this.updateStatus();
     }
 
-}
+
 
     componentDidMount = async () => {
         await doRequest({
