@@ -30,7 +30,7 @@ const AllAdminPage = ({ user, history, getUser }) => {
   const [isLoading, setisLoading] = useState(true)
  
   useEffect(() => {
-    if (!user.admin)
+    if (!user)
       getUser()
     let func = async () => {
       await doRequest({

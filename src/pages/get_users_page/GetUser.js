@@ -3,6 +3,7 @@ import doRequest from "../../utils/requestHooks";
 import './GetUser.css'
 import Loader from "react-loader-spinner"
 import data2 from '../../config'
+import Topbar from '../../components/Header/Header'
 
 // eslint-disable-next-line
 export default ({ history }) => {
@@ -50,6 +51,7 @@ export default ({ history }) => {
         return (
             <div className="get-user">
 
+              <Topbar history={history}/>
         {isLoading ?
         (<center>
           <Loader type='ThreeDots' color='#f08080' height={150} width={150} />

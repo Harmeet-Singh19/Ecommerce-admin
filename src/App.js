@@ -37,11 +37,11 @@ function App() {
     <Route exact path="/" component={HomePage}/>
     <Route exact path="/login" component={LoginPage}/>
     <Route exact path="/books" component={AllBooksPage}/>
-    <Route exact path="/books/add" component={UploadPage}/>
-    <Route exact path="/admins/add" component={AddAdminPage}/>
-    <Route exact path="/admins" component={AllAdminPage}/>
-    <Route exact path="/getuser" component={GetUserPage}/>
+    <Route exact path="/add/books" exact component={UploadPage}/>
     <Route exact path="/books/:id" component={EditPage}/>
+    <Route exact path="/add/admins" component={AddAdminPage}/>
+    <Route exact path="/admins" component={AllAdminPage}/>
+    <Route exact path="/getusers" component={GetUserPage}/>
     <Route exact path='/liveorders' component={AllLiveOrdersPage} />
     <Route exact path='/liveorders/:id' component={EditLiveOrderPage} />
 

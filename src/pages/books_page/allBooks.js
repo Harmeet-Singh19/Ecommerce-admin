@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import doRequest from "../../utils/requestHooks";
 import Loader from "react-loader-spinner"
 import styles from "./allBooks.module.css";
+import TopBar from '../../components/Header/Header'
 
 //actions part
 
@@ -47,6 +48,7 @@ class AllBook extends Component{
     render(){
         return(
             <div>
+                 <TopBar history={this.props.history} />
                 {this.state.isLoading?
                     (<center>
                         <Loader type='ThreeDots' color='yellow' height={250} width={250} />
