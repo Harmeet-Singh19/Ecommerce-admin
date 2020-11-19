@@ -8,7 +8,7 @@ import doRequest from "../../utils/requestHooks";
 class Upload extends Component {
 
     state={
-        isDisabled:false,
+        isDisabled:true,
         data:{
             name:"",
             price:0,
@@ -23,6 +23,7 @@ class Upload extends Component {
             countInStock:0,
             image:[],
             seller:"",
+            isLive:true
         },
        bookChange:false,
         vendors:[]
@@ -94,13 +95,15 @@ class Upload extends Component {
                 this.setState({ isLoading: false })
             })
 }
-deleteBook = async e => {
+changeActiveStatus = async e => {
     this.setState({ isLoading: true })
     await doRequest({
       url: `/admin/book/${this.props.match.params.id}`,
       method: "delete",
-      onSuccess: () => this.props.history.goBack()
+      body:{isLive:!this.state.data.isLive},
+      onSuccess: (res) =>console.log(res) 
     });
+    this.setState({ isLoading: false })
   }
 
 
@@ -132,7 +135,7 @@ deleteBook = async e => {
     }
     componentDidMount=async()=>{
         await this.getSellers()
-        console.log(this.state.vendors)
+       // console.log(this.state.vendors)
         await doRequest({
             url: `/admin/book/${this.props.match.params.id}`,
             method: "get",
@@ -140,7 +143,7 @@ deleteBook = async e => {
               delete data.__v;
               delete data._id;
               
-              console.log(data)
+            //  console.log(data)
 
               await this.setState({ data })
             },
@@ -150,6 +153,9 @@ deleteBook = async e => {
     }
 
     render (){
+      let disabled=this.state.isDisabled
+      let message=this.state.data.isLive?'Stop Displaying':'Make Live Again'
+    
         
     return (
         <>
@@ -175,11 +181,11 @@ deleteBook = async e => {
                                                 <div className= {styles.form}>
                                                 <form style={{justifyContent:"center"}} >
                                                 <div className={styles.buttons_container}>
-                                                <input type="button" value="Update" disabled={this.state.isDisabled} onClick={()=>this.updateBook()}/>
+                                                <input type="button" value="Update" disabled={disabled} onClick={()=>this.updateBook()}/>
                   <input type="button" value="Edit" disabled={!this.state.isDisabled} onClick={() => {
                     this.setState({ isDisabled: !this.state.isDisabled })
                   }} />
-                  <input type="button" value="Delete" onClick={() => this.deleteDish()} />
+                  <input type="button" value={message} onClick={() => this.changeActiveStatus()} />
                   </div>
                   <div className={styles.inputRow}>
                       {this.state.data.image.map((imag)=>{
@@ -230,7 +236,7 @@ deleteBook = async e => {
                       seller: e.target.value
                     }
                   })
-                }} value={this.state.data.seller} isDisabled={this.state.isDisabled}>
+                }} value={this.state.data.seller} disabled={this.state.isDisabled}>
                                           {this.state.vendors.map((vendor,index)=>(
                                               <option value={`${vendor._id}`}>{vendor.name},{vendor.address}</option>
                                           ))}
