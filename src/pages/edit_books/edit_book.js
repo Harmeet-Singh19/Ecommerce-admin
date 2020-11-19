@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './Upload.css'
+import styles from './edit_book.module.css'
 import Loader from "react-loader-spinner"
 import TopBar from '../../components/Header/Header'
 import axios from "axios"
@@ -159,29 +159,29 @@ deleteBook = async e => {
                         <Loader type='ThreeDots' color='yellow' height={250} width={250} />
                     </center>
                 ):(
-                    <div className="upload">
-                    <h1 className="welcome-heading-upload"> Edit Book</h1>
+                    <div className={styles.edit}>
+                    <h1 className={styles.welcome_heading_edit}> Edit Book</h1>
                     <br/><br/>
         
         
-                <div className="upload-page">
+                <div className={styles.edit_page}>
         
                     <div className="justify-content-center row">
                             <div className=" col-md-8 col-sm-8">
-                            <div className="card" >
-                                <div className="card-body" style={{width:"80%"}}>
+                            <div className={styles.card} >
+                                <div className={styles.card_body} style={{width:"80%"}}>
                                     
                                             <div className="mt-3">
-                                                <div className= "form">
+                                                <div className= {styles.form}>
                                                 <form style={{justifyContent:"center"}} >
+                                                <div className={styles.buttons_container}>
                                                 <input type="button" value="Update" disabled={this.state.isDisabled} onClick={()=>this.updateBook()}/>
                   <input type="button" value="Edit" disabled={!this.state.isDisabled} onClick={() => {
                     this.setState({ isDisabled: !this.state.isDisabled })
                   }} />
-                  <span className="secButton" style={{ padding: "8px", margin: "10px" }} onClick={() => this.deleteDish()}>
-                    Delete
-                  </span>
-                  <div className="inputRow">
+                  <input type="button" value="Delete" onClick={() => this.deleteDish()} />
+                  </div>
+                  <div className={styles.inputRow}>
                       {this.state.data.image.map((imag)=>{
                         //  console.log(typeof (imag))
                           if(typeof (imag) === "object"){
@@ -198,7 +198,7 @@ deleteBook = async e => {
                        })}
                 
 
-                  <div className="inputCol">
+                  <div className={styles.inputCol}>
                     <p>Image File</p>
                     <input type="file" id="booksImg" disabled={this.state.disabled} multiple accept="image/*" onChange={e => this.fileValidate(e)} />
                     <label htmlFor="booksImg" className="fileUpload" >{"Edit Images"}</label>
@@ -409,7 +409,7 @@ deleteBook = async e => {
                                             <br></br>
                                            
                                             <br />
-                                            <div className = "user_login_button">
+                                            <div className ={styles.user_login_button}>
                                             <input type="button" value="Add Book" onClick={this.addImages} />
                                             </div>
                                         </form>

@@ -13,8 +13,6 @@ const UploadPage = lazy(()=> import('./pages/upload_books/Upload'))
 const AddAdminPage = lazy(() => import('./pages/add_admin_page/AddAdmin'))
 const GetUserPage = lazy(()=>import('./pages/get_users_page/GetUser'))
 const EditPage= lazy(()=>import('./pages/edit_books/edit_book'))
-<<<<<<< HEAD
-=======
 const AllLiveOrdersPage = lazy(() =>
   import('./pages/live_order_page/all_orders_page')
 )
@@ -22,7 +20,6 @@ const EditLiveOrderPage = lazy(() =>
   import('./pages/live_order_page/edit_order_page')
 )
 
->>>>>>> e7d696b13b2402e25a9738f5e6a49f79ad866e24
 const AllBooksPage = lazy(() => import('./pages/books_page/allBooks'))
 
 
