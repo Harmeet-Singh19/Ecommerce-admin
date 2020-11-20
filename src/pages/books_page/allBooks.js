@@ -56,7 +56,7 @@ class AllBook extends Component{
                     : (<div className={styles.MenuPageStyle} style={{color:"white"}}>
 
                         <div className = {styles.primaryButtonContainer}>
-                            <div className={styles.primaryButton} onClick={() => this.props.history.push("book/add")}>
+                            <div className={styles.primaryButton} onClick={() => this.props.history.push("add/books")}>
                                 Add Book
                             </div>
                         </div>
