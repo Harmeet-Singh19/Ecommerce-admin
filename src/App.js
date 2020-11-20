@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react'
+import React, { lazy, Suspense,useEffect } from 'react'
 import { Route } from 'react-router-dom'
 import Loader from 'react-loader-spinner'
 import './App.css'
@@ -27,6 +27,8 @@ const AllBooksPage = lazy(() => import('./pages/books_page/allBooks'))
 
 
 function App() {
+
+  
   return (
     <Suspense
     fallback={

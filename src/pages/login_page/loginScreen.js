@@ -1,8 +1,24 @@
 import React, { Component } from "react";
 import doRequest from "../../utils/requestHooks";
 import styles from "./Login.module.css";
+import { connect } from 'react-redux';
 
 
+  
+  const getUser = () => async (dispatch) => {
+    await doRequest({
+      url: "/admin/auth/verify",
+      method: "get",
+      onSuccess: async (data) => {
+        // console.log(data)
+        dispatch({
+            type: 'SET_USER',
+            user:data
+          })
+          console.log(data)
+      },
+    });
+  };
 class Login extends Component {
 
     constructor(props){
@@ -20,8 +36,9 @@ class Login extends Component {
             url: "/admin/auth/login",
             method: "post",
             body: { ...this.state },
-            onSuccess: ({ data }) => {
-                localStorage.setItem("token", data.token)
+            onSuccess: async({ data }) => {
+                await localStorage.setItem("token", data.token)
+                this.props.getUser()
                 this.props.history.push("/")
             },
             onError: (err) => alert(err),
@@ -83,5 +100,10 @@ class Login extends Component {
         );
     }
 }
-export default(Login);
+const mapStateToProps = (state) => {
+    return {
+      user: state.user.user
+    }
+  }
+export default connect(mapStateToProps,{getUser})(Login);
 

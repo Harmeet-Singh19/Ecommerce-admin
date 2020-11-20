@@ -1,9 +1,21 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import './Admin.css'
 import Item from './Items'
 
 
+
 function Admin(props) {
+    useEffect(async() => {
+        let token = await localStorage.getItem('token')
+            console.log(token)
+            if (token !== null) {
+                console.log(props)
+            } else {
+                //should be restricted
+                props.history.push('/login')
+            }
+       
+      }, [])
     return (
         <div className = "admin-page">
             <h1 className = "admin-heading">Welcome , Admin </h1>
@@ -42,4 +54,5 @@ function Admin(props) {
     )
 }
 
-export default Admin
+
+export default(Admin);

@@ -46,6 +46,17 @@ export default ({ history }) => {
     }
 
     useEffect(() => { setisLoading(true); getOrders() }, [])
+    useEffect(async() => {
+        let token = await localStorage.getItem('token')
+            console.log(token)
+            if (token !== null) {
+                
+            } else {
+                //should be restricted
+                history.push('/login')
+            }
+       
+      }, [])
     useEffect(() => { console.log(placed) }, [placed])
     
 
