@@ -15,11 +15,21 @@ const AllAdminPage=lazy(()=>import('./pages/all_admin_page/allAdmin'))
 const EditAdminPage=lazy(()=>import('./pages/edit_admin_page/EditAdmin'))
 const GetUserPage = lazy(()=>import('./pages/get_users_page/GetUser'))
 const EditPage= lazy(()=>import('./pages/edit_books/edit_book'))
+
+
 const AllLiveOrdersPage = lazy(() =>
   import('./pages/live_order_page/all_orders_page')
 )
 const EditLiveOrderPage = lazy(() =>
   import('./pages/live_order_page/edit_order_page')
+)
+
+const PastOrders = lazy(() =>
+  import('./pages/past_orders_page/past_orders_page')
+)
+
+const PastOrderDetails = lazy(() =>
+  import('./pages/past_orders_page/past_order_details_page')
 )
 
 const AllBooksPage = lazy(() => import('./pages/books_page/allBooks'))
@@ -48,6 +58,8 @@ function App() {
     <Route exact path="/getusers" component={GetUserPage}/>
     <Route exact path='/liveorders' component={AllLiveOrdersPage} />
     <Route exact path='/liveorders/:id' component={EditLiveOrderPage} />
+    <Route exact path='/orderhistory' component={PastOrders} />
+    <Route exact path='/orderhistory/:id' component={PastOrderDetails} />
 
 
 
