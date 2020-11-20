@@ -5,6 +5,7 @@ import TopBar from "../../components/Header/Header";
 import { FaPencilAlt } from "react-icons/fa";
 import Loader from "react-loader-spinner"
 import { connect } from 'react-redux';
+import styles from './allAdmin.module.css'
 
 const setUser = (user) => {
     // console.log(user)
@@ -64,16 +65,16 @@ const AllAdminPage = ({ user, history, getUser }) => {
         (<center>
           <Loader type='ThreeDots' color='yellow' height={150} width={150} />
         </center>)
-        : (<div className="allAdmins">
-          <div className="addOptions">
+        : (<div className={styles.allAdmins}>
+          <div className={styles.addOptions}>
            
-              <button className="primaryButton" onClick={() => history.push("/admins/add")}>
+              <button className={styles.primaryButton} onClick={() => history.push("/admins/add")}>
                 Add Admin/Vendor
               </button>
             
             
           </div>
-          <div style={{ overflowX: "auto", width: "100vw",color:"yellow" }}>
+          <div style={{ overflowX: "auto", width: "100vw",color:"white" }}>
             <table>
               <thead>
                 <tr>

@@ -1,0 +1,46 @@
+.primaryButton {
+    margin-left: 20px;
+    background-color: #00b894;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 10px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.primaryButton:hover {
+
+    background-color: #03e0b4;
+
+}
+
+.addOptions {
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    width: 100%;
+    padding: 0% 1%;
+    border-collapse: 0;
+}
+
+tr {
+    outline: thin solid;
+    width: 100%;
+}
+
+tr:nth-child(odd) {}
+
+th {
+    text-align: center;
+    padding: 1% 0%;
+
+}
+
+td {
+    text-align: center;
+    padding: 1% 0%;
+    font-size: 1.1em;
+    width: 20px;
+}
