@@ -8,6 +8,7 @@ import Loader from "react-loader-spinner"
 import DateString from "../../utils/dateUtil";
 // import io from "socket.io-client";
 import data2 from '../../config'
+import TopBar from '../../components/Header/Header'
 
 // eslint-disable-next-line
 export default ({ history }) => {
@@ -67,7 +68,7 @@ export default ({ history }) => {
 
     return (
         <>
-            
+            <TopBar history={history}/>
             {isLoading ?
                 (<center>
                     <Loader type='ThreeDots' color='yellow' height={150} width={150} />
@@ -79,7 +80,7 @@ export default ({ history }) => {
                             <thead>
                                 <tr>
                                     <th>OrderID</th>
-                                    <th>Type</th>
+                                    
                                     <th>Order Status</th>
                                     <th>Placed Date</th>
                                     <th>Name</th>
@@ -97,7 +98,7 @@ export default ({ history }) => {
                                          }
                                         return (<tr key={index}>
                                             <td><span>{order.orderId}</span></td>
-                                            <td>{order.orderType}</td>
+                                            
                                             <td>{order.orderStatus}</td>
                                             <td>{DateString(order.placedAt)}</td>
                                             <td>{order.userId.name}</td>

@@ -12,17 +12,17 @@
 }
 
 .logOptions {
-	display: none;
+	
 	flex-direction: column;
-	position: absolute;
-	top: 50px;
+	
 	border-radius: 10px;
-	background-color: #ffd6df;
+	background-color: yellow;
 }
 .logOptions div {
 	padding: 0.6em;
 	height: max-content;
 	cursor: pointer;
+	color: yellow;
 }
 .icon{
 	color: yellow;
