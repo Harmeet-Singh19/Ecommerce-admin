@@ -8,6 +8,7 @@ import Loader from "react-loader-spinner"
 import DateString from "../../utils/dateUtil";
 // import io from "socket.io-client";
 import data2 from '../../config'
+import TopBar from '../../components/Header/Header'
 
 // eslint-disable-next-line
 export default ({ history }) => {
@@ -67,7 +68,7 @@ export default ({ history }) => {
 
     return (
         <>
-            
+            <TopBar history={history}/>
             {isLoading ?
                 (<center>
                     <Loader type='ThreeDots' color='yellow' height={150} width={150} />

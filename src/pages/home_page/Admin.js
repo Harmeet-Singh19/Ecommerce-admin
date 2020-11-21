@@ -47,6 +47,10 @@ function Admin(props) {
                     <Item duty = "Get Live Orders" ></Item>
                     
                 </div>
+                <div className ="duty-card" onClick={()=>props.history.push('/orderhistory')}>
+                    <Item duty = "Past Orders" ></Item>
+                    
+                </div>
                 
 
             </div>

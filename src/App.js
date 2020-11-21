@@ -43,7 +43,7 @@ function App() {
     <Suspense
     fallback={
       <center>
-        <Loader type='ThreeDots' color='yellow' height={150} width={150} />
+        <Loader type='ThreeDots' color='yellow' height={250} width={250} />
       </center>
     }
   >

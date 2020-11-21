@@ -23,15 +23,15 @@ const Header= ({ history, isHome = false }) => {
           <MdHome className="icon" />
         </div>
       )}
-      <div className="">
+      {isHome?(<></>):(<div className="">
        
         <div className="logOptions">
           <div onClick={async () => {
             await localStorage.removeItem("token");
             history.push("/login")
-          }}>LogOut</div>
+          }}>LOGOUT</div>
         </div>
-      </div>
+      </div>)}
     </div>
   )
 }
