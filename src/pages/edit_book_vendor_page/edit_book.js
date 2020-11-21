@@ -115,7 +115,7 @@ changeActiveStatus = async e => {
     console.log(this.state.data.image)
     }
     componentDidMount=async()=>{
-        await this.getSellers()
+       
        // console.log(this.state.vendors)
         await doRequest({
             url: `/admin/book/${this.props.match.params.id}`,

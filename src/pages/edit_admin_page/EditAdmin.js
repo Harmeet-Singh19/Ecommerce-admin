@@ -33,6 +33,7 @@ export default class editAdmin extends Component {
         });
       };
       getAllBooks=async()=>{
+        //  console.log(this.props.match.params.id)
         await doRequest({
             url: `/admin/book/vendor/${this.props.match.params.id}`,
             method: "get",

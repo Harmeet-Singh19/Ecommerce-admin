@@ -40,6 +40,8 @@ const VendorUploadBookPage=lazy(()=>import('./pages/upload_book_vendor_page/Uplo
 
 const VendorEditBookPage=lazy(()=>import('./pages/edit_book_vendor_page/edit_book'))
 
+const VendorAdminEditPage=lazy(()=>import('./pages/edit_vendor_info_page/Edit'))
+
 function App() {
 
   
@@ -68,6 +70,7 @@ function App() {
     <Route exact path='/vendor/orders' component={VendorAllBooksPage} />
     <Route exact path="/vendor/add/books" component={VendorUploadBookPage} />
    <Route exact path="/vendor/books/:id" component={VendorEditBookPage} /> 
+   <Route exact path="/vendor/info" component={VendorAdminEditPage} />
 
   </Suspense>
 
