@@ -40,7 +40,11 @@ const VendorAllOrders = lazy(() => import('./pages/vendor_orders_page/orders'))
 
 const VendorEditOrder = lazy(() => import('./pages/vendor_orders_page/edit_orders'))
 
+const VendorUploadBookPage=lazy(()=>import('./pages/upload_book_vendor_page/Upload'))
 
+const VendorEditBookPage=lazy(()=>import('./pages/edit_book_vendor_page/edit_book'))
+
+const VendorAdminEditPage=lazy(()=>import('./pages/edit_vendor_info_page/Edit'))
 
 function App() {
 
@@ -67,10 +71,14 @@ function App() {
     <Route exact path='/orderhistory' component={PastOrders} />
     <Route exact path='/orderhistory/:id' component={PastOrderDetails} />
     <Route exact path='/vendor/books' component={VendorAllBooksPage} />
-    <Route exact path='/vendor/order' component={VendorAllBooksPage} />
-    <Route exact path='/vendor/order/:id' component={VendorAllBooksPage} />
+    <Route exact path='/vendor/orders' component={VendorAllBooksPage} />
+    <Route exact path='/vendor/orders/:id' component={VendorAllBooksPage} />
 
 
+    
+    <Route exact path="/vendor/add/books" component={VendorUploadBookPage} />
+   <Route exact path="/vendor/books/:id" component={VendorEditBookPage} /> 
+   <Route exact path="/vendor/info" component={VendorAdminEditPage} />
 
   </Suspense>
 
