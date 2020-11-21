@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import doRequest from "../../utils/requestHooks";
-import styles from './past_orders_page.module.css'
+import styles from './vendor_orders.module.css'
 
 
 import Loader from "react-loader-spinner";
@@ -16,7 +16,7 @@ class EditOrderPage extends Component {
     }
 
     updateStatus = async (e) => {
-        
+
         await doRequest({
             url: `/admin/order/${this.props.match.params.id}`,
             method: "put",
@@ -54,8 +54,8 @@ class EditOrderPage extends Component {
     render() {
         return (
             <>
-                
-                {/* <TopBar history={this.props.history} /> */}
+
+               {/* <TopBar history={this.props.history} />  */}
                 {this.state.isLoading ? (
                     <center>
                         <Loader type='ThreeDots' color='#f08080' height={150} width={150} />
@@ -64,7 +64,7 @@ class EditOrderPage extends Component {
                         <div className={styles.allOrders_v}>
                             <div className={styles.InfoCard} >
                                 <div>
-                                    {/* detailsRow */}
+                                    
                                     <div className={styles.typeRow}>
                                         <div className={styles.typeRow}>
                                             <h2>User Details</h2>
@@ -81,23 +81,8 @@ class EditOrderPage extends Component {
                                             <p>Order Status: <span>{this.state.orderStatus}</span></p>
                                         </div>
                                     </div>
-                                    {/* generateRow */}
-                                    <div className={styles.buttonCont}>
-                                        {this.state.orderStatus === "cancelled" ?
-                                            (
-                                                <>
-                                                    <button className={styles.standardButton} onClick={this.refundOrder}>
-                                                        Refund Order
-
-                                                    </button>
-                                                    
-                                                    
-                                                    
-                                                </>
-                                            ) : (<></>)}
-
-                                        
-                                    </div>
+                                   
+                                    
 
                                     <h3 style={{ backgroundColor: "#222222" }}>Ordered Books</h3>
                                     <div className="dishRow" style={{ backgroundColor: "#222222" }}>

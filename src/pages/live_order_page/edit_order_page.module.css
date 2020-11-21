@@ -3,7 +3,7 @@
 	flex-direction: column;
 	flex-wrap: wrap;
 	color: white;
-	background-color: black;
+	background-color: #222222;
 	 align-content: center; 
 	justify-items: flex-start; 
 	width: 100%;
@@ -14,6 +14,19 @@
 	font-size: 50px;
 }
 
+.typeCol{
+
+    
+    display: flex;
+    flex-direction: row;
+	flex-wrap: wrap;
+	align-content: left;
+	justify-items: center;
+	height: fit-content;
+	background-color: #222222;
+
+}
+
 .typeRow{
 	margin: 2% 0;
     display: flex;
@@ -22,21 +35,22 @@
 	align-content: left;
 	justify-items: center;
 	height: fit-content;
-	background-color: black;
+    background-color: #222222;
+    flex:1;
 }
 
 .typeRow p{
-    background-color: black;
+    background-color: #222222;
     font-weight: bolder;
     font-size: 25px;
 }
 
 .typeRow h2{
-    background-color: black;
+    background-color: #222222;
 }
 
 .typeRow span{
-     background-color: black;
+     background-color: #222222;
     font-weight: lighter;
     font-size: 17px;
 
@@ -60,7 +74,7 @@
 	justify-items: flex-start; 
 	
 	
-	background-color: black;
+	background-color: #222222;
 	height: fit-content;
 	
 
@@ -78,29 +92,29 @@
 }
 
 .orderCard p{
-	background-color: black;
+	background-color: #222222;
 	font-weight: bolder;
 	font-size: 20px;
 }
 
 .orderCard span{
-	background-color: black;
+	background-color: #222222;
 	font-weight: lighter;
 	font-size: 17px;
 }
 
 .orderCard div{
-	background-color: black;
+	background-color: #222222;
 }
 
 .orderCard li{
-	background-color: black;
+	background-color: #222222;
 }
 
 .editt{
 	width: 50px;
 	height: 50px;
-	background-color: black;
+	background-color: #222222;
 }
 
 
@@ -114,7 +128,7 @@
   text-transform: uppercase;
   letter-spacing: 2.5px;
   font-weight: 500;
-  color: black;
+  color: #222222;
  background-color: white;
   border: none;
   border-radius: 45px;
@@ -138,13 +152,13 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    background-color: black;
+    background-color: #222222;
     /* align-items: flex-start;
     align-content: flex-start; */
 }
 
 .buttonCont form{
-    background-color: black;
+    background-color: #222222;
     color: #fff;
     
 }
