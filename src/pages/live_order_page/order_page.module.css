@@ -3,10 +3,11 @@
 	flex-direction: column;
 	flex-wrap: wrap;
 	color: white;
-	background-color: black;
+	background-color: #222222;
 	 /* align-content: center; */
 	justify-items: flex-start; 
 	width: 100%;
+	
 }
 
 .allOrders_v h2{
@@ -15,34 +16,36 @@
 }
 
 .typeRow{
-	margin: 2% 0;
+	margin: 10px 0;
 	display: flex;
 	flex-wrap: wrap;
 	align-content: center;
 	justify-items: center;
 	height: fit-content;
-	background-color: black;
+	background-color: #222222;
+	
 }
 
 .card-cont{
     display: flex;
-    justify-content: center;
+	justify-content: center;
+	
 }
 
 /* style={{ maxHeight: "300px", minWidth: "300px", overflowY: "scroll" }} */
 
 .orderCard{
     padding: 2% 2%;
-    margin: 2% 3%;
+    margin: 10px 3%;
 	width: fit-content;
-	min-height: 300px;
+	min-height: 250px;
 	
 	max-width: 300px;
-	background-color: black;
+	background-color: #222222;
 	height: fit-content;
 	
 
-    box-shadow: 5px 5px 5px 5px rgba(240, 233, 233, 0.932); 
+    box-shadow: 2.5px 2.5px 2.5px 2.5px rgba(240, 233, 233, 0.932); 
 	transition: 0.3s;
 	border-radius: 25px;
     
@@ -51,35 +54,32 @@
 	align-content: center;
 	flex: 1;
 
-	font-size: 16px;
+	font-size: 15px;
 	min-width: 250px;
+	
 }
 
 .orderCard p{
-	background-color: black;
+	background-color: #222222;
 	font-weight: bolder;
-	font-size: 20px;
+	font-size: 18px;
 }
 
 .orderCard span{
-	background-color: black;
+	background-color: #222222;
 	font-weight: lighter;
-	font-size: 17px;
+	font-size: 15px;
 }
 
 .orderCard div{
-	background-color: black;
+	background-color: #222222;
 }
 
 .orderCard li{
-	background-color: black;
+	background-color: #222222;
 }
 
-.editt{
-	width: 50px;
-	height: 50px;
-	background-color: black;
-}
+
 
 .standardButton{
     display: inline;

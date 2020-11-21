@@ -79,7 +79,7 @@ export default ({ history }) => {
                             <thead>
                                 <tr>
                                     <th>OrderID</th>
-                                    <th>Type</th>
+                                    
                                     <th>Order Status</th>
                                     <th>Placed Date</th>
                                     <th>Name</th>
@@ -97,7 +97,7 @@ export default ({ history }) => {
                                          }
                                         return (<tr key={index}>
                                             <td><span>{order.orderId}</span></td>
-                                            <td>{order.orderType}</td>
+                                            
                                             <td>{order.orderStatus}</td>
                                             <td>{DateString(order.placedAt)}</td>
                                             <td>{order.userId.name}</td>

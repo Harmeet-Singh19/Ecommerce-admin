@@ -77,7 +77,7 @@ export default ({ history }) => {
                         <span className="slider round"></span>
                     </label> */}
 
-                    <h2 style={{textAlign:"center",backgroundColor:"black"}}>Placed Orders</h2>
+                    <h2 style={{textAlign:"center",backgroundColor:"#222222"}}>Placed Orders</h2>
                     <div className={styles.typeRow}>
                         {placed.map((order, index) => {
                             //console.log(order)
@@ -101,7 +101,7 @@ export default ({ history }) => {
                             )
                         })}
                     </div>
-                    <h2 style={{ textAlign: "center", backgroundColor: "black" }}>Confirmed Orders</h2>
+                    <h2 style={{ textAlign: "center", backgroundColor: "#222222" }}>Confirmed Orders</h2>
                     <div className={styles.typeRow}>
                         {confirmed.map((order, index) => {
                             return (
@@ -124,7 +124,7 @@ export default ({ history }) => {
                             )
                         })}
                     </div>
-                    <h2 style={{ textAlign: "center", backgroundColor: "black" }}>Orders Out for Delivery</h2>
+                    <h2 style={{ textAlign: "center", backgroundColor: "#222222" }}>Orders Out for Delivery</h2>
                     <div className={styles.typeRow}>
                         {outford.map((order, index) => {
                             return (
