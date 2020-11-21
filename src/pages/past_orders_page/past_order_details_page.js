@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import doRequest from "../../utils/requestHooks";
+import styles from './past_orders_page.module.css'
+
 
 import Loader from "react-loader-spinner";
 import DateString from "../../utils/dateUtil";
@@ -14,7 +16,7 @@ class EditOrderPage extends Component {
     }
 
     updateStatus = async (e) => {
-        e.preventDefault();
+        
         await doRequest({
             url: `/admin/order/${this.props.match.params.id}`,
             method: "put",
@@ -44,50 +46,88 @@ class EditOrderPage extends Component {
         console.log(this.state)
     }
 
+    refundOrder = async () => {
+        await this.setState({ orderStatus: "refunded" })
+        this.updateStatus();
+    }
+
     render() {
         return (
             <>
                 
+                {/* <TopBar history={this.props.history} /> */}
                 {this.state.isLoading ? (
                     <center>
                         <Loader type='ThreeDots' color='#f08080' height={150} width={150} />
                     </center>
                 ) : (
-                        <div className="orderPage">
-                            <form onSubmit={this.updateStatus}>
-                                <div className="detailsRow">
-                                    <div>
-                                        <h2>User Details</h2>
-                                        <p>Name: {this.state.userId.name}</p>
-                                        <p>Phone Number: {this.state.userId.phone}</p>
-                                        <p>Email: {this.state.userId.email}</p>
+                        <div className={styles.allOrders_v}>
+                            <div className={styles.InfoCard} >
+                                <div>
+                                    {/* detailsRow */}
+                                    <div className={styles.typeRow}>
+                                        <div className={styles.typeRow}>
+                                            <h2>User Details</h2>
+                                            <p>Name: <span>{this.state.userId.name}</span></p>
+                                            <p>Phone Number: <span>{this.state.userId.phone}</span></p>
+                                            <p>Email: <span>{this.state.userId.email}</span></p>
 
+                                        </div>
+                                        <div className={styles.typeRow}>
+                                            <h2>Order Details</h2>
+                                            <p>Order Type : <span>{this.state.orderType}</span></p>
+                                            <p>Delivery Address: <span>{this.state.address.address}</span></p>
+                                            <p>Order Placed on: <span>{DateString(this.state.placedAt)}</span></p>
+                                            <p>Order Status: <span>{this.state.orderStatus}</span></p>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <h2>Order Details</h2>
-                                        <p>Order Type : {this.state.orderType}</p>
-                                        <p>Delivery Address: {this.state.address.address}</p>
-                                        <p>Order Placed on: {DateString(this.state.placedAt)}</p>
-                                        <p>Order Status: {this.state.orderStatus}</p>
+                                    {/* generateRow */}
+                                    <div className={styles.buttonCont}>
+                                        {this.state.orderStatus === "cancelled" ?
+                                            (
+                                                <>
+                                                    <button className={styles.standardButton} onClick={this.refundOrder}>
+                                                        Refund Order
+
+                                                    </button>
+                                                    
+                                                    {/* <form onSubmit={this.cancelOrder}>
+                                                        <input type="text" style={{ width: "70%", height: "20px", margin: "10px 15%", color: "white" }} placeholder="Reason to Cancel Order" onChange={e => this.setState({
+                                                            cancelReason: e.target.value
+                                                        })} required />
+                                                        <br></br>
+                                                        
+                                                        <div style={{ display: "flex", alignContent: "center", alignItems: "center", backgroundColor: "#222222" }}>
+                                                            <button className={styles.standardButton} style={{ margin: "0 45%" }}>
+                                                                Cancel Order
+                          </button>
+                                                        </div>
+                                                    </form> */}
+                                                    {/* </div> */}
+                                                </>
+                                            ) : (<></>)}
+
+                                        
+                                    </div>
+
+                                    <h3 style={{ backgroundColor: "#222222" }}>Ordered Books</h3>
+                                    <div className="dishRow" style={{ backgroundColor: "#222222" }}>
+                                        {this.state.books.map((book, index) => {
+                                            return (
+                                                <div className="dishCard" style={{ backgroundColor: "#222222" }} key={index}>
+                                                    <div className="dishImage" style={{ backgroundColor: "#222222" }}>
+                                                        {book.book.image.map((imag) => (
+                                                            <img src={imag} alt="No Image Uploaded" width={100} height={100} />
+                                                        ))}
+                                                        {/* <img src={book.bookId.image} alt="No Image Uploaded" /> */}
+                                                    </div>
+                                                    <h3 style={{ backgroundColor: "#222222" }}>{book.bookRef}</h3>
+                                                    <h4 style={{ backgroundColor: "#222222" }}>Price : {`${book.book.name} x ${book.quantity} = ${(book.billedPrice) * (book.quantity)}`}</h4>
+                                                </div>
+                                            )
+                                        })}
                                     </div>
                                 </div>
-                            </form>
-                            {this.state.orderStatus === "undelivered" ? (
-                                <button className="primaryButton">Refund</button>
-                            ) : (<> </>)}
-                            <h3>Ordered Dishes</h3>
-                            <div className="dishRow">
-                                {this.state.books.map((book, index) => {
-                                    return (
-                                        <div className="dishCard" key={index}>
-                                            <div className="dishImage">
-                                                <img src={book.book.image} alt="No Image Uploaded" />
-                                            </div>
-                                            <h3>{book.book.name}</h3>
-                                            <h4>Price : {`${book.book.price} x ${book.quantity} = ${(book.book.price) * (book.quantity)}`}</h4>
-                                        </div>
-                                    )
-                                })}
                             </div>
                         </div>
                     )}

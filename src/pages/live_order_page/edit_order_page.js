@@ -86,6 +86,7 @@ class EditLiveOrderPage extends Component {
                 ) : (   
                         <div className={styles.allOrders_v}>
                         <div className={styles.InfoCard} >
+                        <div>
                                 {/* detailsRow */}
                                 <div className={styles.typeRow}>
                                     <div className={styles.typeRow}>
@@ -236,6 +237,7 @@ class EditLiveOrderPage extends Component {
                                 })}
                             </div>
                         </div>
+                            </div>
                         </div>
                     )}
             </>
