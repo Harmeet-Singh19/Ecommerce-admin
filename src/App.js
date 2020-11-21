@@ -34,6 +34,8 @@ const PastOrderDetails = lazy(() =>
 
 const AllBooksPage = lazy(() => import('./pages/books_page/allBooks'))
 
+const VendorAllBooksPage = lazy(() => import('./pages/vendor_allbooks_page/vendor_allbooks'))
+
 
 
 function App() {
@@ -60,6 +62,8 @@ function App() {
     <Route exact path='/liveorders/:id' component={EditLiveOrderPage} />
     <Route exact path='/orderhistory' component={PastOrders} />
     <Route exact path='/orderhistory/:id' component={PastOrderDetails} />
+    <Route exact path='/vendor/books' component={VendorAllBooksPage} />
+    <Route exact path='/vendor/orders' component={VendorAllBooksPage} />
 
 
 
