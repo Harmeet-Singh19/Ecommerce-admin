@@ -51,7 +51,7 @@ export default ({ history }) => {
 
     }
 
-    useEffect(() => { 
+    useEffect(async() => { 
         await doRequest({
             url: "/admin/auth/verify",
             method: "get",
