@@ -42,6 +42,17 @@ export default ({ history }) => {
 
     useEffect(() => {
         let func = async () => {
+          await doRequest({
+            url: "/admin/auth/verify",
+            method: "get",
+            onSuccess: async (data) => {
+               
+             if(data.isVendor===true){
+                 alert('Not authorized')
+                 history.push('/')
+             }
+            },
+          });
           await getUsers();
         }
         func();

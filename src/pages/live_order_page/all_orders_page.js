@@ -45,7 +45,19 @@ export default ({ history }) => {
 
     }
 
-    useEffect(() => { setisLoading(true); getOrders() }, [])
+    useEffect(async() => { 
+        await doRequest({
+            url: "/admin/auth/verify",
+            method: "get",
+            onSuccess: async (data) => {
+               
+             if(data.isVendor===true){
+                 alert('Not authorized')
+                 history.push('/')
+             }
+            },
+          });
+        setisLoading(true); getOrders() }, [])
     useEffect(async() => {
         let token = await localStorage.getItem('token')
             console.log(token)

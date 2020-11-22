@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import doRequest from "../../utils/requestHooks";
 import styles from './vendor_orders.module.css'
-
+import TopBar from '../../components/Header/Header'
 import Loader from "react-loader-spinner";
 import DateString from "../../utils/dateUtil";
 
@@ -54,10 +54,10 @@ class EditOrderPage extends Component {
         return (
             <>
 
-               {/* <TopBar history={this.props.history} />  */}
+                <TopBar history={this.props.history} />  
                 {this.state.isLoading ? (
                     <center>
-                        <Loader type='ThreeDots' color='#f08080' height={150} width={150} />
+                        <Loader type='ThreeDots' color='yellow' height={250} width={250} />
                     </center>
                 ) : (
                         <div className={styles.allOrders_v}>

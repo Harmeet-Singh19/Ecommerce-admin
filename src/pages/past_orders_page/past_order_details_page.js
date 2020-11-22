@@ -30,6 +30,17 @@ class EditOrderPage extends Component {
 
     componentDidMount = async () => {
         await doRequest({
+            url: "/admin/auth/verify",
+            method: "get",
+            onSuccess: async (data) => {
+               
+             if(data.isVendor===true){
+                 alert('Not authorized')
+                 this.props.history.push('/')
+             }
+            },
+          });
+        await doRequest({
             url: `/admin/order/${this.props.match.params.id}`,
             method: "get",
             onSuccess: async (data) => {

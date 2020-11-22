@@ -12,34 +12,25 @@ import TopBar from '../../components/Header/Header'
 
 // eslint-disable-next-line
 export default ({ history }) => {
-    const [cancelled, setcancelled] = useState([])
-    const [refunded, setrefunded] = useState([])
-    const [delivered, setdelivered] = useState([])
+    
     const [isLoading, setisLoading] = useState(false)
     const [dataa, setdata] = useState([])
+    const[id,setid]=useState("")
+    const [count,setcount]=useState(0)
 
 
     // console.dir(data);
 
-    let getOrders = async () => {
-
+    let getOrders = async (id) => {
 
         await doRequest({
-            url: `/admin/order/history/orders`,
+            url: `/admin/order/vendor/${id}`,
             method: "get",
             onSuccess: async (data) => {
 
-                setdata([...data])
-
-
-                // console.log(DateString(data.placedAt))
-
-                await setcancelled(data.cancelled)
-                console.log(data.cancelled)
-                await setcancelled(data.cancelled)
-                await setrefunded(data.refunded)
-                await setdelivered(data.delivered)
-
+                console.log(data)
+                setcount(data.data.usages[0])
+                setdata(data.data.usages[1])
                 setisLoading(false)
             },
             onError: (err) => {
@@ -51,7 +42,19 @@ export default ({ history }) => {
 
     }
 
-    useEffect(() => { setisLoading(true); getOrders() }, [])
+    useEffect(async() => { 
+        let vid="";
+         await doRequest({
+        url: "/admin/auth/verify",
+        method: "get",
+        onSuccess: async (data) => {
+           
+          vid=data.admin._id
+          console.log(vid)
+        },
+      });
+      setisLoading(true); 
+      getOrders(vid) }, [])
     useEffect(async () => {
         let token = await localStorage.getItem('token')
         console.log(token)
@@ -74,7 +77,7 @@ export default ({ history }) => {
                     <Loader type='ThreeDots' color='yellow' height={150} width={150} />
                 </center>)
                 : (
-                    <div className={styles.table_container}  >
+                    <div className={styles.table_container} style={{color:"yellow"}}  >
                         <h1>Past Orders</h1>
                         <table >
                             <thead>
@@ -86,7 +89,7 @@ export default ({ history }) => {
                                     <th>Name</th>
                                     <th>Phone No.</th>
                                     <th>Invoice value</th>
-                                    <th className="edit">Edit</th>
+                                    <th className="edit">Details</th>
                                 </tr>
                             </thead>
                             <tbody >
@@ -104,7 +107,7 @@ export default ({ history }) => {
                                         <td>{order.userId.name}</td>
                                         <td>{order.userId.phone}</td>
                                         <td>{total}</td>
-                                        <td className="edit" onClick={() => history.push(`/vendor/order/${order._id}`)}>
+                                        <td className="edit" onClick={() => history.push(`/vendor/orders/${order._id}`)}>
                                             <FaPencilAlt className="icon" />
                                         </td>
                                     </tr>)

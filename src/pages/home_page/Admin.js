@@ -60,6 +60,10 @@ function Admin(props) {
                 <Item duty = "Upload Books" ></Item>
                 
             </div>
+            <div className ="duty-card" onClick={()=>props.history.push('/vendor/orders')}>
+                <Item duty = "Your Orders" ></Item>
+                
+            </div>
           
         
         </div>

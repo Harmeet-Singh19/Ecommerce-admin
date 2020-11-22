@@ -105,6 +105,17 @@ class Upload extends Component {
     console.log(this.state.image)
     }
     componentDidMount=async()=>{
+        await doRequest({
+            url: "/admin/auth/verify",
+            method: "get",
+            onSuccess: async (data) => {
+               
+             if(data.isVendor===true){
+                 alert('Not authorized')
+                 this.props.history.push('/')
+             }
+            },
+          });
         await this.getSellers()
         console.log(this.state.vendors)
     }

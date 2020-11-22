@@ -136,6 +136,17 @@ changeActiveStatus = async e => {
     componentDidMount=async()=>{
         await this.getSellers()
        // console.log(this.state.vendors)
+       await doRequest({
+        url: "/admin/auth/verify",
+        method: "get",
+        onSuccess: async (data) => {
+           
+         if(data.isVendor===true){
+             alert('Not authorized')
+             this.props.history.push('/')
+         }
+        },
+      });
         await doRequest({
             url: `/admin/book/${this.props.match.params.id}`,
             method: "get",

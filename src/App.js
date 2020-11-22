@@ -71,11 +71,8 @@ function App() {
     <Route exact path='/orderhistory' component={PastOrders} />
     <Route exact path='/orderhistory/:id' component={PastOrderDetails} />
     <Route exact path='/vendor/books' component={VendorAllBooksPage} />
-    <Route exact path='/vendor/orders' component={VendorAllBooksPage} />
-    <Route exact path='/vendor/orders/:id' component={VendorAllBooksPage} />
-
-
-    
+    <Route exact path='/vendor/orders' component={VendorAllOrders} />
+    <Route exact path='/vendor/orders/:id' component={VendorEditOrder} />
     <Route exact path="/vendor/add/books" component={VendorUploadBookPage} />
    <Route exact path="/vendor/books/:id" component={VendorEditBookPage} /> 
    <Route exact path="/vendor/info" component={VendorAdminEditPage} />
