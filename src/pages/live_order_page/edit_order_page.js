@@ -215,15 +215,16 @@ class EditLiveOrderPage extends Component {
                                 <div className={styles.typeCol} style={{backgroundColor:"#222222"}}>
                                 {this.state.books.map((book, index) => {
                                     return (
-                                        <div className="dishCard" style={{ backgroundColor: "#222222",flex:1,minWidth:"500px",border:"0px solid white", margin:"10px 10px" }} key={index}>
+                                        <div style={{ backgroundColor: "#222222",flex:1,minWidth:"500px",border:"0px solid white", margin:"10px 10px",display:"flex",flexDirection:"column",alignContent:"center",alignItems:"center",justifyContent:"center",
+                                         border:"0px solid white",padding:"20px 0"}} key={index}>
                                             <div className="dishImage" style={{ backgroundColor: "#222222" }}>
                                                 {book.book.image.map((imag) => (
                                                     <img src={imag} alt="No Image Uploaded" width={100} height={100} />
                                                 ))}
                                                 {/* <img src={book.bookId.image} alt="No Image Uploaded" /> */}
                                             </div>
-                                            <h3 style={{ backgroundColor: "#222222" }}>{book.bookRef}</h3>
-                                            <h4 style={{ backgroundColor: "#222222" }}>Price : {`${book.book.name} x ${book.quantity} = ${(book.billedPrice) * (book.quantity)}`}</h4>
+                                            <h3 style={{ backgroundColor: "#222222" }}>{book.book.name}</h3>
+                                            <h4 style={{ backgroundColor: "#222222" }}>Price : {`${book.billedPrice} x ${book.quantity} = ${(book.billedPrice) * (book.quantity)}`}</h4>
                                         </div>
                                     )
                                 })}

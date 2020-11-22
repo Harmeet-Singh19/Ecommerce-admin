@@ -1,0 +1,167 @@
+.allOrders_v{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	color: white;
+	background-color: #222222;
+	 align-content: center; 
+	justify-items: flex-start; 
+	width: 100%;
+}
+
+.allOrders_v h2{
+	font-family: 'Permanent Marker', cursive;
+	font-size: 50px;
+}
+
+.typeCol{
+
+    
+    display: flex;
+    flex-direction: row;
+	flex-wrap: wrap;
+	align-content: left;
+	justify-items: center;
+	height: fit-content;
+	background-color: #222222;
+
+}
+
+.typeRow{
+	margin: 2% 0;
+    display: flex;
+    flex-direction: column;
+	flex-wrap: wrap;
+	align-content: left;
+	justify-items: center;
+	height: fit-content;
+    background-color: #222222;
+    flex:1;
+}
+
+.typeRow p{
+    background-color: #222222;
+    font-weight: bolder;
+    font-size: 25px;
+}
+
+.typeRow h2{
+    background-color: #222222;
+}
+
+.typeRow span{
+     background-color: #222222;
+    font-weight: lighter;
+    font-size: 17px;
+
+}
+
+.card-cont{
+    display: flex;
+    justify-content: center;
+}
+
+/* style={{ maxHeight: "300px", minWidth: "300px", overflowY: "scroll" }} */
+
+.InfoCard{
+    /* display: flex; */
+    padding: 2% 2%;
+    margin: 2% 3%;
+    width: 70%;
+	
+    min-height: 300px;
+     align-content: center; 
+	justify-items: flex-start; 
+	
+	
+	background-color: #222222;
+	height: fit-content;
+	
+
+    box-shadow: 5px 5px 5px 5px rgba(240, 233, 233, 0.932); 
+	transition: 0.3s;
+	border-radius: 25px;
+    
+    
+    align-items: center;
+	align-content: center;
+	flex: 1;
+
+	font-size: 16px;
+	
+}
+
+.orderCard p{
+	background-color: #222222;
+	font-weight: bolder;
+	font-size: 20px;
+}
+
+.orderCard span{
+	background-color: #222222;
+	font-weight: lighter;
+	font-size: 17px;
+}
+
+.orderCard div{
+	background-color: #222222;
+}
+
+.orderCard li{
+	background-color: #222222;
+}
+
+.editt{
+	width: 50px;
+	height: 50px;
+	background-color: #222222;
+}
+
+
+.standardButton{
+    display: inline;
+    
+  width: 140px;
+  height: 45px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #222222;
+ background-color: white;
+  border: none;
+  border-radius: 45px;
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  margin: auto;
+  
+}
+
+.standardButton:hover{
+    color: #fff;
+    background-color: aqua;
+}
+
+.standardButton:focus {
+  outline: 0;
+}
+
+.buttonCont{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: #222222;
+    /* align-items: flex-start;
+    align-content: flex-start; */
+}
+
+.buttonCont form{
+    background-color: #222222;
+    color: #fff;
+    
+}
+
+
+

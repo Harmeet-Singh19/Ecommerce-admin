@@ -51,6 +51,19 @@
 	font-size: 50px;
 }
 
+.typeCol{
+
+    
+    display: flex;
+    flex-direction: row;
+	flex-wrap: wrap;
+	align-content: left;
+	justify-items: center;
+	height: fit-content;
+	background-color: #222222;
+
+}
+
 .typeRow{
 	margin: 2% 0;
     display: flex;
@@ -59,7 +72,8 @@
 	align-content: left;
 	justify-items: center;
 	height: fit-content;
-	background-color: #222222;
+    background-color: #222222;
+    flex:1;
 }
 
 .typeRow p{

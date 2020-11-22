@@ -65,7 +65,7 @@ class EditOrderPage extends Component {
                             <div className={styles.InfoCard} >
                                 <div>
                                     {/* detailsRow */}
-                                    <div className={styles.typeRow}>
+                                    <div className={styles.typeCol}>
                                         <div className={styles.typeRow}>
                                             <h2>User Details</h2>
                                             <p>Name: <span>{this.state.userId.name}</span></p>
@@ -75,7 +75,7 @@ class EditOrderPage extends Component {
                                         </div>
                                         <div className={styles.typeRow}>
                                             <h2>Order Details</h2>
-                                            <p>Order Type : <span>{this.state.orderType}</span></p>
+                                            
                                             <p>Delivery Address: <span>{this.state.address.address}</span></p>
                                             <p>Order Placed on: <span>{DateString(this.state.placedAt)}</span></p>
                                             <p>Order Status: <span>{this.state.orderStatus}</span></p>
@@ -99,19 +99,22 @@ class EditOrderPage extends Component {
                                         
                                     </div>
 
-                                    <h3 style={{ backgroundColor: "#222222" }}>Ordered Books</h3>
-                                    <div className="dishRow" style={{ backgroundColor: "#222222" }}>
+                                    <h3 style={{ backgroundColor: "#222222", textAlign: "center", margin: "10px 0", fontSize: "18px" }}>Ordered Books</h3>
+                                    <div className={styles.typeCol} style={{ backgroundColor: "#222222" }}>
                                         {this.state.books.map((book, index) => {
                                             return (
-                                                <div className="dishCard" style={{ backgroundColor: "#222222" }} key={index}>
+                                                <div style={{
+                                                    backgroundColor: "#222222", flex: 1, minWidth: "500px", border: "0px solid white", margin: "10px 10px", display: "flex", flexDirection: "column", alignContent: "center", alignItems: "center", justifyContent: "center",
+                                                    border: "0px solid white", padding: "20px 0"
+                                                }} key={index}>
                                                     <div className="dishImage" style={{ backgroundColor: "#222222" }}>
                                                         {book.book.image.map((imag) => (
                                                             <img src={imag} alt="No Image Uploaded" width={100} height={100} />
                                                         ))}
-                                                        
+                                                        {/* <img src={book.bookId.image} alt="No Image Uploaded" /> */}
                                                     </div>
-                                                    <h3 style={{ backgroundColor: "#222222" }}>{book.bookRef}</h3>
-                                                    <h4 style={{ backgroundColor: "#222222" }}>Price : {`${book.book.name} x ${book.quantity} = ${(book.billedPrice) * (book.quantity)}`}</h4>
+                                                    <h3 style={{ backgroundColor: "#222222" }}>{book.book.name}</h3>
+                                                    <h4 style={{ backgroundColor: "#222222" }}>Price : {`${book.billedPrice} x ${book.quantity} = ${(book.billedPrice) * (book.quantity)}`}</h4>
                                                 </div>
                                             )
                                         })}
