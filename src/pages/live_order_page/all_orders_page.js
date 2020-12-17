@@ -8,6 +8,7 @@ import Loader from "react-loader-spinner"
 import DateString from "../../utils/dateUtil";
 // import io from "socket.io-client";
 import data2 from '../../config'
+import design from '../past_orders_page/past_orders_page.module.css'
 
  // eslint-disable-next-line
 export default ({ history }) => {
@@ -81,84 +82,134 @@ export default ({ history }) => {
                 </center>)
                 : (<div className={styles.allOrders_v} >
 
-                    {/* <h2>Accepting Live Orders</h2>
-                    <label className="switch">
-                        <input type="checkbox" checked={accepting} onChange={e => {
-                            confirmStatus(e.target.checked)
-                        }} />
-                        <span className="slider round"></span>
-                    </label> */}
+                   
 
-                    <h2 style={{textAlign:"center",backgroundColor:"#222222"}}>Placed Orders</h2>
-                    <div className={styles.typeRow}>
-                        {placed.map((order, index) => {
-                            //console.log(order)
-                            return (
-                                <div className={styles.orderCard} key={index}>
-                                    <p>OrderId: <span>{order.orderId}</span></p>
-                                    <p>Placed At: <span>{DateString(order.placedAt)}</span></p>
-                                    <p>Placed By:  <span>{order.userId.name}</span></p>
-                                    <p>Phone Number: <span>{order.userId.phone}</span></p>
-                                    <p>Address:  <span>{order.address.address}</span></p>
-                                    <div className={styles.editt} onClick={() => history.push(`/liveorders/${order._id}`)}>
-                                        <FaPencilAlt className="icon" />
-                                    </div>
-                                    <p>Books: </p>
-                                    <>{order.books.map((book, index) => {
-                                        return (
-                                            <li key={index}>{book.book.name} x {book.quantity}</li>
-                                        )
-                                    })}</>
-                                </div>
-                            )
-                        })}
+                    <div className={design.table_container}  >
+                        <h1>Placed Orders</h1>
+                        <table >
+                            <thead>
+                                <tr>
+                                    <th>OrderID</th>
+
+                                    <th>Order Status</th>
+                                    <th>Placed Date</th>
+                                    <th>Name</th>
+                                    <th>Phone No.</th>
+                                    <th>Invoice value</th>
+                                    <th className="edit">Edit</th>
+                                </tr>
+                            </thead>
+                            <tbody >
+                                {placed.map((order, index) => {
+
+                                    let total = 0;
+                                    for (let ind = 0; ind < order.books.length; ind++) {
+                                        total += order.books[ind].book.price * order.books[ind].quantity
+                                    }
+                                    return (<tr key={index}>
+                                        <td><span>{order.orderId}</span></td>
+
+                                        <td>{order.orderStatus}</td>
+                                        <td>{DateString(order.placedAt)}</td>
+                                        <td>{order.userId.name}</td>
+                                        <td>{order.userId.phone}</td>
+                                        <td>{total}</td>
+                                        <td className="edit" onClick={() => history.push(`/liveorders/${order._id}`)}>
+                                            <FaPencilAlt className="icon" />
+                                        </td>
+                                    </tr>)
+
+                                })}
+                            </tbody>
+                        </table>
+
+
                     </div>
-                    <h2 style={{ textAlign: "center", backgroundColor: "#222222" }}>Confirmed Orders</h2>
-                    <div className={styles.typeRow}>
-                        {confirmed.map((order, index) => {
-                            return (
-                                <div className={styles.orderCard} key={index}>
-                                    <p>OrderId: <span>{order.orderId}</span></p>
-                                    <p>Placed At: <span>{DateString(order.placedAt)}</span></p>
-                                    <p>Placed By: <span>{order.userId.name}</span></p>
-                                    <p>Phone Number: <span>{order.userId.phone}</span></p>
-                                    <p>Address: <span>{order.address.address}</span></p>
-                                    <div className={styles.editt} onClick={() => history.push(`/liveorders/${order._id}`)}>
-                                        <FaPencilAlt className="icon" />
-                                    </div>
-                                    <p>Books: </p>
-                                    <>{order.books.map((book, index) => {
-                                        return (
-                                            <li key={index}>{book.book.name} x {book.quantity}</li>
-                                        )
-                                    })}</>
-                                </div>
-                            )
-                        })}
+                    <div className={design.table_container}  >
+                        <h1>Confirmed Orders</h1>
+                        <table >
+                            <thead>
+                                <tr>
+                                    <th>OrderID</th>
+
+                                    <th>Order Status</th>
+                                    <th>Placed Date</th>
+                                    <th>Name</th>
+                                    <th>Phone No.</th>
+                                    <th>Invoice value</th>
+                                    <th className="edit">Edit</th>
+                                </tr>
+                            </thead>
+                            <tbody >
+                                {confirmed.map((order, index) => {
+
+                                    let total = 0;
+                                    for (let ind = 0; ind < order.books.length; ind++) {
+                                        total += order.books[ind].book.price * order.books[ind].quantity
+                                    }
+                                    return (<tr key={index}>
+                                        <td><span>{order.orderId}</span></td>
+
+                                        <td>{order.orderStatus}</td>
+                                        <td>{DateString(order.placedAt)}</td>
+                                        <td>{order.userId.name}</td>
+                                        <td>{order.userId.phone}</td>
+                                        <td>{total}</td>
+                                        <td className="edit" onClick={() => history.push(`/liveorders/${order._id}`)}>
+                                            <FaPencilAlt className="icon" />
+                                        </td>
+                                    </tr>)
+
+                                })}
+                            </tbody>
+                        </table>
+
+
                     </div>
-                    <h2 style={{ textAlign: "center", backgroundColor: "#222222" }}>Orders Out for Delivery</h2>
-                    <div className={styles.typeRow}>
-                        {outford.map((order, index) => {
-                            return (
-                                <div className={styles.orderCard} key={index}>
-                                    <p>OrderId: <span>{order.orderId}</span></p>
-                                    <p>Placed At: <span>{DateString(order.placedAt)}</span></p>
-                                    <p>Placed By: <span>{order.userId.name}</span></p>
-                                    <p>Phone Number: <span>{order.userId.phone}</span></p>
-                                    <p>Address: <span>{order.address.address}</span></p>
-                                    <div className={styles.editt} onClick={() => history.push(`/liveorders/${order._id}`)}>
-                                        <FaPencilAlt className="icon" />
-                                    </div>
-                                    <p>Books: </p>
-                                    <>{order.books.map((book, index) => {
-                                        return (
-                                            <li key={index}>{book.book.name} x {book.quantity}</li>
-                                        )
-                                    })}</>
-                                </div>
-                            )
-                        })}
+
+                    <div className={design.table_container}  >
+                        <h1>Orders Out For Delivery</h1>
+                        <table >
+                            <thead>
+                                <tr>
+                                    <th>OrderID</th>
+
+                                    <th>Order Status</th>
+                                    <th>Placed Date</th>
+                                    <th>Name</th>
+                                    <th>Phone No.</th>
+                                    <th>Invoice value</th>
+                                    <th className="edit">Edit</th>
+                                </tr>
+                            </thead>
+                            <tbody >
+                                {outford.map((order, index) => {
+
+                                    let total = 0;
+                                    for (let ind = 0; ind < order.books.length; ind++) {
+                                        total += order.books[ind].book.price * order.books[ind].quantity
+                                    }
+                                    return (<tr key={index}>
+                                        <td><span>{order.orderId}</span></td>
+
+                                        <td>{order.orderStatus}</td>
+                                        <td>{DateString(order.placedAt)}</td>
+                                        <td>{order.userId.name}</td>
+                                        <td>{order.userId.phone}</td>
+                                        <td>{total}</td>
+                                        <td className="edit" onClick={() => history.push(`/liveorders/${order._id}`)}>
+                                            <FaPencilAlt className="icon" />
+                                        </td>
+                                    </tr>)
+
+                                })}
+                            </tbody>
+                        </table>
+
+
                     </div>
+                    
+                    
                 </div>
                 )
             }
