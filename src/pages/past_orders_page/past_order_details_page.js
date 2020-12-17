@@ -80,14 +80,14 @@ class EditOrderPage extends Component {
                                         <div className={styles.typeRow}>
                                             <h2>User Details</h2>
                                             <p>Name: <span>{this.state.userId.name}</span></p>
-                                            <p>Phone Number: <span>{this.state.userId.phone}</span></p>
+                                            <p>Phone Number: <span>{this.state.address.phone}</span></p>
                                             <p>Email: <span>{this.state.userId.email}</span></p>
 
                                         </div>
                                         <div className={styles.typeRow}>
                                             <h2>Order Details</h2>
                                             
-                                            <p>Delivery Address: <span>{this.state.address.address}</span></p>
+                                            <p>Delivery Address: <span>{this.state.address.address + ' , ' + this.state.address.city + ' , ' + this.state.address.state + ' , ' + this.state.address.pincode}</span></p>
                                             <p>Order Placed on: <span>{DateString(this.state.placedAt)}</span></p>
                                             <p>Order Status: <span>{this.state.orderStatus}</span></p>
                                         </div>
