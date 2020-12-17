@@ -20,6 +20,8 @@ class EditLiveOrderPage extends Component {
         }
     }
 
+    
+
     updateStatus = async () => {
         // e.preventDefault();
         await doRequest({
@@ -57,6 +59,18 @@ class EditLiveOrderPage extends Component {
 
 
     componentDidMount = async () => {
+
+        await doRequest({
+            url: "/admin/auth/verify",
+            method: "get",
+            onSuccess: async (data) => {
+               
+             if(data.isVendor===true){
+                 alert('Not authorized')
+                 this.props.history.push('/')
+             }
+            },
+          });
         await doRequest({
             url: `/admin/order/${this.props.match.params.id}`,
             method: "get",
@@ -72,9 +86,16 @@ class EditLiveOrderPage extends Component {
 
     componentDidUpdate = () => {
         console.log(this.state)
+        
     }
 
     render() {
+
+        console.log(this.state.address)
+
+         
+
+        
 
         return (
             <>
@@ -87,22 +108,24 @@ class EditLiveOrderPage extends Component {
                         <div className={styles.allOrders_v}>
                         <div className={styles.InfoCard} >
                         <div>
+                        
                                 {/* detailsRow */}
-                                <div className={styles.typeRow}>
+                                <div  className={styles.typeCol}>
                                     <div className={styles.typeRow}>
                                     <h2>User Details</h2>
                                         <p>Name: <span>{this.state.userId.name}</span></p>
-                                        <p>Phone Number: <span>{this.state.userId.phone}</span></p>
+                                            <p>Phone Number: <span>{this.state.address.phone}</span></p>
                                     <p>Email: <span>{this.state.userId.email}</span></p>
 
-                                </div>
+                                    </div>
                                     <div className={styles.typeRow}>
                                     <h2>Order Details</h2>
-                                        <p>Order Type : <span>{this.state.orderType}</span></p>
-                                        <p>Delivery Address: <span>{this.state.address.address}</span></p>
+                                        
+                                        <p>Delivery Address: <span>{this.state.address.address + ' , ' + this.state.address.city + ' , ' + this.state.address.state + ' , ' + this.state.address.pincode}</span></p>
                                         <p>Order Placed on: <span>{DateString(this.state.placedAt)}</span></p>
                                         <p>Order Status: <span>{this.state.orderStatus}</span></p>
                                 </div>
+                                        
                             </div>
                             {/* generateRow */}
                             <div className={styles.buttonCont}>
@@ -121,25 +144,20 @@ class EditLiveOrderPage extends Component {
                                                         cancelReason: e.target.value
                                                     })} required />
                                                     <br></br>
-                                                    {/* <datalist id="cancelReason">
-                                                        <option value="Raw Materials not available">Raw Materials not available</option>
-                                                        <option value="Other Reason">Other Reason</option>
-                                                    </datalist> */}
-                                                    <div style={{display:"flex", alignContent:"center", alignItems:"center",backgroundColor:"black"}}>
+                                                    
+                                                    <div style={{display:"flex", alignContent:"center", alignItems:"center",backgroundColor:"#222222"}}>
                                                     <button className={styles.standardButton} style={{ margin: "0 45%" }}>
                                                         Cancel Order
                           </button>
                                                     </div>
                                                 </form>
-                                            {/* </div> */}
+                                            
                                         </>
                                     ) : (<></>)}
 
                                 {this.state.orderStatus === "confirmed" ?
                                     <>
-                                        {                    /*<a className="secButton" href={`/packageslip/${this.props.match.params.id}`} target="__blank">
-                      Generate Packing Slip
-                    </a>*/}
+                                        
 
                                         <a className="secButton" href={`/invoice/${this.props.match.params.id}`} target="__blank">
                                             Generate Invoice
@@ -157,11 +175,8 @@ class EditLiveOrderPage extends Component {
                                                     cancelReason: e.target.value
                                                     
                                                 })} required />
-                                                {/* <datalist id="cancelReason">
-                                                        <option value="Raw Materials not available">Raw Materials not available</option>
-                                                        <option value="Other Reason">Other Reason</option>
-                                                    </datalist> */}
-                                                    <div style={{display:"flex", alignContent:"center", alignItems:"center",backgroundColor:"black"}}>
+                                               
+                                                    <div style={{display:"flex", alignContent:"center", alignItems:"center",backgroundColor:"#222222"}}>
                                                 <button className={styles.standardButton} style={{margin:"0 45%"}}>
                                                     Cancel Order
 
@@ -176,9 +191,7 @@ class EditLiveOrderPage extends Component {
 
                                 {this.state.orderStatus === "out_for_delivery" ?
                                     <>
-                                        {                    /*<a className="secButton" href={`/packageslip/${this.props.match.params.id}`} target="__blank">
-                      Generate Packing Slip
-                    </a>*/}
+                                       
 
                                         <a className="secButton" href={`/invoice/${this.props.match.params.id}`} target="__blank">
                                             Generate Invoice
@@ -199,7 +212,7 @@ class EditLiveOrderPage extends Component {
                                                         <option value="Raw Materials not available">Raw Materials not available</option>
                                                         <option value="Other Reason">Other Reason</option>
                                                     </datalist> */}
-                                                    <div style={{display:"flex", alignContent:"center", alignItems:"center",backgroundColor:"black"}}>
+                                                    <div style={{display:"flex", alignContent:"center", alignItems:"center",backgroundColor:"#222222"}}>
                                                         <button className={styles.standardButton} >
                                                             Cancel Order
                           </button>
@@ -219,19 +232,20 @@ class EditLiveOrderPage extends Component {
                                 } */}
                             </div>
 
-                                <h3 style={{ backgroundColor: "black" }}>Ordered Books</h3>
-                                <div className="dishRow" style={{backgroundColor:"black"}}>
+                                <h3 style={{ backgroundColor: "#222222",textAlign:"center",margin:"10px 0",fontSize:"18px" }}>Ordered Books</h3>
+                                <div className={styles.typeCol} style={{backgroundColor:"#222222"}}>
                                 {this.state.books.map((book, index) => {
                                     return (
-                                        <div className="dishCard" style={{ backgroundColor: "black" }} key={index}>
-                                            <div className="dishImage" style={{ backgroundColor: "black" }}>
+                                        <div style={{ backgroundColor: "#222222",flex:1,minWidth:"500px",border:"0px solid white", margin:"10px 10px",display:"flex",flexDirection:"column",alignContent:"center",alignItems:"center",justifyContent:"center",
+                                         border:"0px solid white",padding:"20px 0"}} key={index}>
+                                            <div className="dishImage" style={{ backgroundColor: "#222222" }}>
                                                 {book.book.image.map((imag) => (
                                                     <img src={imag} alt="No Image Uploaded" width={100} height={100} />
                                                 ))}
                                                 {/* <img src={book.bookId.image} alt="No Image Uploaded" /> */}
                                             </div>
-                                            <h3 style={{ backgroundColor: "black" }}>{book.bookRef}</h3>
-                                            <h4 style={{ backgroundColor: "black" }}>Price : {`${book.book.name} x ${book.quantity} = ${(book.billedPrice) * (book.quantity)}`}</h4>
+                                            <h3 style={{ backgroundColor: "#222222" }}>{book.book.name}</h3>
+                                            <h4 style={{ backgroundColor: "#222222" }}>Price : {`${book.billedPrice} x ${book.quantity} = ${(book.billedPrice) * (book.quantity)}`}</h4>
                                         </div>
                                     )
                                 })}

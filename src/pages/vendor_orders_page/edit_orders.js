@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import doRequest from "../../utils/requestHooks";
-import styles from './past_orders_page.module.css'
-
-
+import styles from './vendor_orders.module.css'
+import TopBar from '../../components/Header/Header'
 import Loader from "react-loader-spinner";
 import DateString from "../../utils/dateUtil";
 
@@ -16,7 +15,7 @@ class EditOrderPage extends Component {
     }
 
     updateStatus = async (e) => {
-        
+
         await doRequest({
             url: `/admin/order/${this.props.match.params.id}`,
             method: "put",
@@ -29,17 +28,6 @@ class EditOrderPage extends Component {
 
 
     componentDidMount = async () => {
-        await doRequest({
-            url: "/admin/auth/verify",
-            method: "get",
-            onSuccess: async (data) => {
-               
-             if(data.isVendor===true){
-                 alert('Not authorized')
-                 this.props.history.push('/')
-             }
-            },
-          });
         await doRequest({
             url: `/admin/order/${this.props.match.params.id}`,
             method: "get",
@@ -65,11 +53,11 @@ class EditOrderPage extends Component {
     render() {
         return (
             <>
-                
-                {/* <TopBar history={this.props.history} /> */}
+
+                <TopBar history={this.props.history} />  
                 {this.state.isLoading ? (
                     <center>
-                        <Loader type='ThreeDots' color='#f08080' height={150} width={150} />
+                        <Loader type='ThreeDots' color='yellow' height={250} width={250} />
                     </center>
                 ) : (
                         <div className={styles.allOrders_v}>
@@ -80,14 +68,14 @@ class EditOrderPage extends Component {
                                         <div className={styles.typeRow}>
                                             <h2>User Details</h2>
                                             <p>Name: <span>{this.state.userId.name}</span></p>
-                                            <p>Phone Number: <span>{this.state.address.phone}</span></p>
+                                            <p>Phone Number: <span>{this.state.userId.phone}</span></p>
                                             <p>Email: <span>{this.state.userId.email}</span></p>
 
                                         </div>
                                         <div className={styles.typeRow}>
                                             <h2>Order Details</h2>
-                                            
-                                            <p>Delivery Address: <span>{this.state.address.address + ' , ' + this.state.address.city + ' , ' + this.state.address.state + ' , ' + this.state.address.pincode}</span></p>
+
+                                            <p>Delivery Address: <span>{this.state.address.address}</span></p>
                                             <p>Order Placed on: <span>{DateString(this.state.placedAt)}</span></p>
                                             <p>Order Status: <span>{this.state.orderStatus}</span></p>
                                         </div>
@@ -101,13 +89,13 @@ class EditOrderPage extends Component {
                                                         Refund Order
 
                                                     </button>
-                                                    
-                                                    
-                                                    
+
+
+
                                                 </>
                                             ) : (<></>)}
 
-                                        
+
                                     </div>
 
                                     <h3 style={{ backgroundColor: "#222222", textAlign: "center", margin: "10px 0", fontSize: "18px" }}>Ordered Books</h3>

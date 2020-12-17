@@ -2,38 +2,41 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import doRequest from "../../utils/requestHooks";
 import Loader from "react-loader-spinner"
-import styles from "./allBooks.module.css";
+// import styles from "./allBooks.module.css";
+import styles from '../../pages/books_page/allBooks.module.css'
 import TopBar from '../../components/Header/Header'
 
 //actions part
 
-const setBooks = (books)=>{
-    return{
-        type:'SET_BOOKS',
-        books
-    }
-
-}
-
-const getBooks = () => async (dispatch) => {
-    await doRequest({
-        url: "/admin/book",
-        method: "get",
-        onSuccess: (data) => {
-            dispatch(setBooks(data))
-        },
-
-    });
-}
 
 class AllBook extends Component{
     constructor(props){
         super(props);
         this.state = {
             data: [],
-            isLoading:true
+            isLoading:true,
+            id:""
         }
     }
+    getBooks = async(id)  => {
+        console.log(id)
+       
+        await doRequest({
+            url: `/admin/book/vendor/${id}`,
+            method: "get",
+            onSuccess: (data) =>{ 
+        console.log(data)
+        this.setState({
+            ...this.state,
+            data:data
+        })
+         this.setState({isLoading:false})
+    },
+            onError: (err) => { alert(err) },
+          });
+          
+    }
+    
     componentDidUpdate = async (previousProps) => {
         if(this.props.books !== previousProps.books){
             await this.setState({data: [...this.props.books]})
@@ -47,14 +50,16 @@ class AllBook extends Component{
             method: "get",
             onSuccess: async (data) => {
                
-             if(data.isVendor===true){
-                 alert('Not authorized')
-                 this.props.history.push('/')
-             }
+               await this.setState({
+                   ...this.state,
+                   id:data.admin._id
+               })
+               console.log(this.state)
             },
           });
-        await this.props.getBooks()
-        await this.setState({isLoading:false})
+        await this.setState({isLoading:true})
+        await this.getBooks(this.state.id)
+      
     }
     render(){
         return(
@@ -83,7 +88,7 @@ class AllBook extends Component{
                                         </div>
                                         <h3>{book.name}</h3>
                                         <h4>Price : {book.price}</h4>
-                                        <div className={styles.editBook} onClick={() => { this.props.history.push(`/books/${book._id}`) }}>
+                                        <div className={styles.editBook} onClick={() => { this.props.history.push(`/vendor/books/${book._id}`) }}>
                                             Edit
                     </div>
                                     </div>
@@ -100,16 +105,7 @@ class AllBook extends Component{
     
 }
 
-const mapStateToProps = (state, ownProp) => {
-    console.log(state)
-    return {
-        books: state.book.books
-    }
-}
 
-const mapDispatchToProps = {
-    getBooks
-}
 
-export default connect(mapStateToProps,mapDispatchToProps)(AllBook)
+export default (AllBook)
 

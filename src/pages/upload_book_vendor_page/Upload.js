@@ -22,7 +22,6 @@ class Upload extends Component {
         countInStock:0,
         image:[],
         seller:"",
-        vendors:[]
     }
     addBook=async(urls)=>{
         await this.setState({ isLoading: true })
@@ -39,26 +38,7 @@ class Upload extends Component {
         });
 
     }
-    getSellers=async()=>{
-        let vendors=[];
-        await this.setState({ isLoading: true })
-        await doRequest({
-            url: `/admin/auth/all-vendors`,
-            method: "get",
-            onSuccess: (res) => {this.setState({
-                ...this.state,
-                vendors:res
-            });
-            this.setState({ isLoading: false })},
-            onError: (err) => {
-                this.setState({ isLoading: false })
-                console.log(err)
-                alert(err)
-            },
-        });
-       // console.log(vendors)
-        return vendors
-    }
+   
 
     addImages=async () =>{
         await this.setState({ isLoading: true })
@@ -110,14 +90,13 @@ class Upload extends Component {
             method: "get",
             onSuccess: async (data) => {
                
-             if(data.isVendor===true){
-                 alert('Not authorized')
-                 this.props.history.push('/')
-             }
+               await this.setState({
+                   ...this.state,
+                   seller:data.admin._id
+               })
+               console.log(this.state)
             },
           });
-        await this.getSellers()
-        console.log(this.state.vendors)
     }
 
     render (){
@@ -160,21 +139,7 @@ class Upload extends Component {
                                                 </label>
                                         
                                             <br />
-                                            <label style={{width:"100%"}}>
-                                                Seller: 
-                                                <select required className="form-control" placeholder="of the course used in (uptil 3 for commerce and 4 for btech)" onChange={async(e) => {
-                                           await this.setState({
-                                               ...this.state,
-                                                seller: e.target.value
-                                            })
-                                           await console.log(this.state.seller)
-                                        }} >
-                                          {this.state.vendors.map((vendor,index)=>(
-                                              <option value={`${vendor._id}`}>{vendor.name},{vendor.address}</option>
-                                          ))}
                                             
-                                        </select>
-                                            </label>
                                             <br/>
         
                                             <label style={{width:"100%"}}>

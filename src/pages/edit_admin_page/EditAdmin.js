@@ -33,6 +33,7 @@ export default class editAdmin extends Component {
         });
       };
       getAllBooks=async()=>{
+        //  console.log(this.props.match.params.id)
         await doRequest({
             url: `/admin/book/vendor/${this.props.match.params.id}`,
             method: "get",
@@ -68,6 +69,17 @@ export default class editAdmin extends Component {
         
       }
       componentDidMount=async()=>{
+        await doRequest({
+            url: "/admin/auth/verify",
+            method: "get",
+            onSuccess: async (data) => {
+               
+             if(data.isVendor===true){
+                 alert('Not authorized')
+                 this.props.history.push('/')
+             }
+            },
+          });
         await doRequest({
             url: `/admin/auth/admin/${this.props.match.params.id}`,
             method: "get",

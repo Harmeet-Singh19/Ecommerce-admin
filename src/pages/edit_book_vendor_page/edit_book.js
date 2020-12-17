@@ -26,7 +26,7 @@ class Upload extends Component {
             isLive:true
         },
        bookChange:false,
-        vendors:[]
+       
     }
     updateBook=async()=>{
         await this.setState({ isLoading: true })
@@ -51,31 +51,12 @@ class Upload extends Component {
         });
 
     }
-    getSellers=async()=>{
-        let vendors=[];
-        await this.setState({ isLoading: true })
-        await doRequest({
-            url: `/admin/auth/all-vendors`,
-            method: "get",
-            onSuccess: (res) => {this.setState({
-                ...this.state,
-                vendors:res
-            });
-            this.setState({ isLoading: false })},
-            onError: (err) => {
-                this.setState({ isLoading: false })
-                console.log(err)
-                alert(err)
-            },
-        });
-       // console.log(vendors)
-        return vendors
-    }
+   
 
     updateImages=async () =>{
         await this.setState({ isLoading: true })
  
-    let token = await localStorage.getItem('token')
+        let token = await localStorage.getItem('token')
     console.log(this.state.data.image)
     const data = new FormData()
     for(var x = 0; x<this.state.data.image.length; x++) {
@@ -134,19 +115,8 @@ changeActiveStatus = async e => {
     console.log(this.state.data.image)
     }
     componentDidMount=async()=>{
-        await this.getSellers()
+       
        // console.log(this.state.vendors)
-       await doRequest({
-        url: "/admin/auth/verify",
-        method: "get",
-        onSuccess: async (data) => {
-           
-         if(data.isVendor===true){
-             alert('Not authorized')
-             this.props.history.push('/')
-         }
-        },
-      });
         await doRequest({
             url: `/admin/book/${this.props.match.params.id}`,
             method: "get",
@@ -238,23 +208,6 @@ changeActiveStatus = async e => {
                                                 </label>
                                         
                                             <br />
-                                            <label style={{width:"100%"}}>
-                                                Seller: 
-                                                <select required className="form-control" placeholder="of the course used in (uptil 3 for commerce and 4 for btech)" onChange={e => {
-                  this.setState({
-                    data: {
-                      ...this.state.data,
-                      seller: e.target.value
-                    }
-                  })
-                }} value={this.state.data.seller} disabled={this.state.isDisabled}>
-                                          {this.state.vendors.map((vendor,index)=>(
-                                              <option value={`${vendor._id}`}>{vendor.name},{vendor.address}</option>
-                                          ))}
-                                            
-                                        </select>
-                                            </label>
-                                            <br/>
         
                                             <label style={{width:"100%"}}>
                                                 Price: 
