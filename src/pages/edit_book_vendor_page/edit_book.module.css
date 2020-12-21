@@ -54,7 +54,7 @@ select:hover {
     border: 1px solid #007bff;
 }
 
-input[type="button"] {
+input[type="button"],button {
     height: 52px;
     border-radius: 26px;
     border: none;
@@ -102,6 +102,6 @@ textarea {
     padding: 5px;
 }
 
-img {
+.im {
     width: 10%;
 }

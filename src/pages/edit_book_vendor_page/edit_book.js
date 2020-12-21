@@ -23,7 +23,8 @@ class Upload extends Component {
             countInStock:0,
             image:[],
             seller:"",
-            isLive:true
+            isLive:true,
+            hand:0
         },
        bookChange:false,
        
@@ -166,19 +167,20 @@ changeActiveStatus = async e => {
                   <input type="button" value="Edit" disabled={!this.state.isDisabled} onClick={() => {
                     this.setState({ isDisabled: !this.state.isDisabled })
                   }} />
-                  <input type="button" value={message} onClick={() => this.changeActiveStatus()} />
+                 <button  onClick={() => this.changeActiveStatus()}>{this.state.data.isLive?'Stop Displaying':'Make Live Again'
+    }</button>
                   </div>
                   <div className={styles.inputRow}>
                       {this.state.data.image.map((imag)=>{
                         //  console.log(typeof (imag))
                           if(typeof (imag) === "object"){
                               return(
-                                <img src={URL.createObjectURL(imag)} alt="pic"/> 
+                                <img src={URL.createObjectURL(imag)} alt="pic" className={styles.im}/> 
                               )
                           }
                           else{
                               return(
-                                <img src={imag} alt="" disabled={this.state.isDisabled} />
+                                <img src={imag} alt="" disabled={this.state.isDisabled} className={styles.im}/>
                               )
                           }
                     
@@ -354,6 +356,21 @@ changeActiveStatus = async e => {
                                             <option value="2">2</option>
                                             <option value="3">3</option>
                                             <option value="4">4</option>
+                                            
+                                        </select>
+                                            </label>
+                                            <label style={{width:"100%"}}>
+                                                Hand: 
+                                                <select disabled={this.state.isDisabled} className="form-control" placeholder="Select 1st for new , 2nd for 2nd hand" onChange={e => {
+                  this.setState({
+                    data: {
+                      ...this.state.data,
+                      hand: e.target.value
+                    }
+                  })
+                }} value={this.state.data.hand} required>
+                                           <option  value="1">1st</option>
+                                            <option value="2">2nd</option>
                                             
                                         </select>
                                             </label>

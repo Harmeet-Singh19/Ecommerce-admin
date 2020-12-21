@@ -31,12 +31,16 @@ class AllBook extends Component{
         super(props);
         this.state = {
             data: [],
+            data2:[],
             isLoading:true
         }
     }
     componentDidUpdate = async (previousProps) => {
         if(this.props.books !== previousProps.books){
-            await this.setState({data: [...this.props.books]})
+            let temp=this.props.books.filter((it)=>it.isLive===true)
+            await this.setState({data: temp})
+            temp=this.props.books.filter((it)=>it.isLive===false)
+            await this.setState({data2: temp})
             this.setState({isLoading:false})
         }
     }
@@ -71,8 +75,30 @@ class AllBook extends Component{
                                 Add Book
                             </div>
                         </div>
+                        <h2 className={styles.h2}>Books which are Live and displaying</h2>
                         <div className={styles.bookRow}>
+                            
                             {this.state.data.map((book, index) => {
+                                return (
+                                    <div className={styles.bookCard} key={index}>
+                                        <div className={styles.bookImage}>
+                                            {book.image.map((imag)=>(
+                                                <img src={imag} alt="No Image Uploaded" width={100} height={100} />
+                                            ))}
+                                            
+                                        </div>
+                                        <h3>{book.name}</h3>
+                                        <h4>Price : {book.price}</h4>
+                                        <div className={styles.editBook} onClick={() => { this.props.history.push(`/books/${book._id}`) }}>
+                                            Edit
+                    </div>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        <h2 className={styles.h2}>Books which are not Live</h2>
+                        <div className={styles.bookRow}>
+                            {this.state.data2.map((book, index) => {
                                 return (
                                     <div className={styles.bookCard} key={index}>
                                         <div className={styles.bookImage}>

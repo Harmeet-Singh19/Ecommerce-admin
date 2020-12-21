@@ -22,6 +22,8 @@ class Upload extends Component {
         countInStock:0,
         image:[],
         seller:"",
+        isLive:false,
+        hand:0
     }
     addBook=async(urls)=>{
         await this.setState({ isLoading: true })
@@ -263,6 +265,21 @@ class Upload extends Component {
                                             <option value="2">2</option>
                                             <option value="3">3</option>
                                             <option value="4">4</option>
+                                            
+                                        </select>
+                                            </label>
+                                            <label style={{width:"100%"}}>
+                                                1st Hand/2nd: 
+                                                <select className="form-control" placeholder="Select 1st for new , 2nd for 2nd hand" onChange={async(e) => {
+                                           await this.setState({
+                                               ...this.state,
+                                                hand: e.target.value
+                                            })
+                                           await console.log(this.state.hand)
+                                        }} required>
+                                            <option  value="1">1st</option>
+                                            <option value="2">2nd</option>
+
                                             
                                         </select>
                                             </label>
