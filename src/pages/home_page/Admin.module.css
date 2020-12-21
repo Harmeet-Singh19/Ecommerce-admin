@@ -1,4 +1,4 @@
-.admin-page {
+.admin_page {
     display: flex;
     flex-direction: column;
 
@@ -9,7 +9,7 @@
     margin-top: 150px;
 }
 
-.all-duties {
+.all_duties {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -18,7 +18,7 @@
     justify-content: center;
 }
 
-.duty-card {
+.duty_card {
     /* display: flex;
     flex-direction: column;
     flex-wrap: wrap; */
@@ -27,14 +27,14 @@
 }
 
 
-.duty-card:hover {
+.duty_card:hover {
     background: #444444;
     box-shadow: 5px 5px 10px #3a3a3a,
         -5px -5px 10px #4e4e4e;
     cursor: pointer;
 }
 
-.admin-heading {
+.admin_heading {
     text-align: center;
     color: White;
 

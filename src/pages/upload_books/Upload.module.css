@@ -1,11 +1,11 @@
-.upload-page {
+.upload_page {
     color: #fff;
     display: flex;
     justify-content: center;
 
 }
 
-.welcome-heading-upload {
+.welcome_heading_upload {
     text-align: center;
     color: white;
 }
@@ -30,8 +30,8 @@ input {
     padding: 5px 5px;
 }
 
-.form input,
-.form select {
+input,
+select {
     width: 100%;
     padding: 15px;
     padding-left: 16px;
@@ -44,12 +44,12 @@ input {
     background: inherit;
 }
 
-.form input:hover,
-.form select:hover {
+input:hover,
+select:hover {
     border: 1px solid #007bff;
 }
 
-.form input[type="button"] {
+input[type="button"] {
     height: 52px;
     border-radius: 26px;
     border: none;
@@ -64,7 +64,7 @@ input {
     width: 200px;
 }
 
-.form input[type="button"]:hover {
+input[type="button"]:hover {
     color: #fff;
     background: #55efc4;
     border: 2px solid #55efc4;
@@ -88,7 +88,7 @@ textarea {
     background: #444444;
 }
 
-.upload-buttons {
+.upload_buttons {
     margin-left: 20px;
     background-color: #00b894;
     color: #fff;

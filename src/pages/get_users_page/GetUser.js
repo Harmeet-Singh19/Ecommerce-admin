@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import doRequest from "../../utils/requestHooks";
-import './GetUser.css'
+import styles from './GetUser.module.css'
 import Loader from "react-loader-spinner"
 import data2 from '../../config'
 import Topbar from '../../components/Header/Header'
@@ -68,9 +68,9 @@ export default ({ history }) => {
           <Loader type='ThreeDots' color='#f08080' height={150} width={150} />
         </center>)
         : (
-          <div className="allUsers">
-            <div className="rowForm">
-              <a className="secButton" href={`${data2.url}/api/admin/user/downloadusers`} target="__blank">
+          <div className={styles.allUsers}>
+            <div className={styles.rowForm}>
+              <a className={styles.secButton} href={`${data2.url}/api/admin/user/downloadusers`} target="__blank">
                 Download CSV
               </a>
             </div>

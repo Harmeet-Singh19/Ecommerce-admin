@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './AddAdmin.css'
+import styles from './AddAdmin.module.css'
 import doRequest from "../../utils/requestHooks";
 import TopBar from "../../components/Header/Header";
 export default class AddAdmin extends Component {
@@ -28,22 +28,21 @@ export default class AddAdmin extends Component {
         return (
             <>
              <TopBar {...this.props} />
-            <div className="add-admin">
+            <div className={styles.add_admin}>
                 
-                <h1 className = "welcome-heading">Add New Admin</h1>
+                <h1 className = {styles.welcome_heading}>Add New Admin</h1>
 
-                <div className="add-admin-main">
-                <div className="justify-content-center row">
-                    <div className=" col-md-8 col-sm-8">
-                    <div className="card" >
-                        <div className="card-body" style={{width:"80%"}}>
+                <div className={styles.add_admin_main}>
+                <div className={styles.row}>
+                    <div className={styles.card} >
+                        <div className={styles.card_body} style={{width:"80%"}}>
                             
                                     <div className="mt-3">
-                                        <div className="form">
+                                        <div className={styles.form}>
                                         <form style={{justifyContent:"center"}}>
                                             <label style={{width:"100%"}}>
                                                 <p>Type of Admin</p>
-                                                <div className="checkBox">
+                                                <div className={styles.checkBox}>
                 <input type="radio"
                 name="admin"
                   onChange={e => {
@@ -52,7 +51,7 @@ export default class AddAdmin extends Component {
                   }} />
                 <p>SuperAdmin </p>
               </div>
-              <div className="checkBox">
+              <div className={styles.checkBox}>
                 <input type="radio" 
                 name="admin"
                   onChange={async(e) => {
@@ -62,7 +61,7 @@ export default class AddAdmin extends Component {
                   }}  />
                 <p>Regular Vendor </p>
               </div>
-              <div className="checkBox">
+              <div className={styles.checkBox}>
                 <input type="radio"
                 name="admin"
                  onChange={e => {
@@ -127,7 +126,7 @@ export default class AddAdmin extends Component {
                                     <br />
                         </div>
                     </div>
-                    </div>
+
                     </div>
                 </div>
                 

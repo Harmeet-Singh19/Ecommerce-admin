@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './Upload.css'
+import styles from './Upload.module.css'
 import Loader from "react-loader-spinner"
 import TopBar from '../../components/Header/Header'
 import axios from "axios"
@@ -130,24 +130,24 @@ class Upload extends Component {
                         <Loader type='ThreeDots' color='yellow' height={250} width={250} />
                     </center>
                 ):(
-                    <div className="upload">
-                    <h1 className="welcome-heading-upload"> Book Upload</h1>
+                    <div className={styles.upload}>
+                    <h1 className={styles.welcome_heading_upload}> Book Upload</h1>
                     <br/><br/>
         
         
-                <div className="upload-page">
+                <div className={styles.upload_page}>
         
-                    <div className="justify-content-center row">
-                            <div className=" col-md-8 col-sm-8">
-                            <div className="card" >
-                                <div className="card-body" style={{width:"80%"}}>
+                    <div className={styles.row}>
+                            <div className={styles.card} >
+                            <div className={styles.card_body} style={{width:"80%"}}>
+
                                     
                                             <div className="mt-3">
-                                                <div className= "form">
+                                                <div className= {styles.form}>
                                                 <form style={{justifyContent:"center"}} >
                                                 
                                                 <label style={{width:"100%"}}>
-                                                    Book Name: 
+                                                    Book Name:
                                                          <input type="text" placeholder="Enter book name"
                                                          value={this.state.name}
                                                          onChange={(e)=>this.setState({
@@ -339,7 +339,7 @@ class Upload extends Component {
                                             <br />
                                 </div>
                             </div>
-                            </div>
+
                             </div>
                 </div>
             </div>

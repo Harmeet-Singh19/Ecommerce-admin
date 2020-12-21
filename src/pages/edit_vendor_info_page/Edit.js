@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './EditAdmin.css'
+import styles from './EditAdmin.module.css'
 import doRequest from "../../utils/requestHooks";
 import TopBar from "../../components/Header/Header";
 import { FaPencilAlt } from "react-icons/fa";
@@ -62,18 +62,17 @@ export default class editAdmin extends Component {
         return (
             <>
              <TopBar {...this.props} />
-            <div className="add-admin">
+            <div className={styles.add_admin}>
                 
-                <h1 className = "welcome-heading">Update Your Info</h1>
+                <h1 className = {styles.welcome_heading}>Update Your Info</h1>
 
-                <div className="add-admin-main">
-                <div className="justify-content-center row">
-                    <div className=" col-md-8 col-sm-8">
-                    <div className="card" >
+                <div className={styles.add_admin_main}>
+                <div className={styles.row}>
+                    <div className={styles.card} >
                         <div className="card-body" style={{width:"80%"}}>
                             
                                     <div className="mt-3">
-                                        <div className="form">
+                                        <div className={styles.form}>
                                         <form style={{justifyContent:"center"}}>
                                             
                                         
@@ -128,7 +127,7 @@ export default class editAdmin extends Component {
                                     <br />
                         </div>
                     </div>
-                    </div>
+
                     </div>
                 </div>
         

@@ -1,9 +1,9 @@
 import React from 'react'
-import './Item.css'
+import styles from './Item.module.css'
 
 function Items(props) {
     return (
-        <div className="individual-card">
+        <div className={styles.individual_card}>
             {props.duty}
         </div>
     )

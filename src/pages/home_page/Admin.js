@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from 'react'
-import './Admin.css'
+import styles from './Admin.module.css'
 import Item from './Items'
 import doRequest from "../../utils/requestHooks";
 import Loader from "react-loader-spinner"
@@ -40,27 +40,27 @@ function Admin(props) {
                 </>
             ):(
                 
-                <div className = "admin-page">
+                <div className = {styles.admin_page}>
                     {
                         vendor?(
                             <>
-                             <h1 className = "admin-heading">Welcome , Vendor </h1>
+                             <h1 className = {styles.admin_heading}>Welcome , Vendor </h1>
         
-        <div className = "all-duties">
-        <div className ="duty-card" onClick={()=>props.history.push('/vendor/info')}>
+        <div className = {styles.all_duties}>
+        <div className ={styles.duty_card} onClick={()=>props.history.push('/vendor/info')}>
                 <Item duty = "Edit Your Info" ></Item>
                 
             </div>
-            <div className ="duty-card" onClick={()=>props.history.push('/vendor/books')}>
+            <div className ={styles.duty_card} onClick={()=>props.history.push('/vendor/books')}>
                 <Item duty = "All Books" ></Item>
                 
             </div>
            
-            <div className ="duty-card" onClick={()=>props.history.push('/vendor/add/books')}>
+            <div className ={styles.duty_card} onClick={()=>props.history.push('/vendor/add/books')}>
                 <Item duty = "Upload Books" ></Item>
                 
             </div>
-            <div className ="duty-card" onClick={()=>props.history.push('/vendor/orders')}>
+            <div className ={styles.duty_card} onClick={()=>props.history.push('/vendor/orders')}>
                 <Item duty = "Your Orders" ></Item>
                 
             </div>
@@ -70,36 +70,36 @@ function Admin(props) {
                             </>
                         ):(
                             <>
-                            <h1 className = "admin-heading">Welcome , Admin </h1>
+                            <h1 className = {styles.admin_heading}>Welcome , Admin </h1>
         
-                            <div className = "all-duties">
+                            <div className = {styles.all_duties}>
                 
-                                <div className ="duty-card" onClick={()=>props.history.push('/add/books')}>
+                                <div className ={styles.duty_card} onClick={()=>props.history.push('/add/books')}>
                                     <Item duty = "Upload Books" ></Item>
                                     
                                 </div>
                                
-                                <div className ="duty-card" onClick={()=>props.history.push('/books')}>
+                                <div className ={styles.duty_card} onClick={()=>props.history.push('/books')}>
                                     <Item duty = "All Books" ></Item>
                                     
                                 </div>
-                                <div className ="duty-card" onClick={()=>props.history.push('/admins')}>
+                                <div className ={styles.duty_card} onClick={()=>props.history.push('/admins')}>
                                     <Item duty = "All Admins" ></Item>
                                     
                                 </div>
-                                <div className ="duty-card"  onClick={()=>props.history.push('/add/admins')}>
+                                <div className ={styles.duty_card} onClick={()=>props.history.push('/add/admins')}>
                                     <Item duty = "Add new Admin/Vendor"></Item>
                                     
                                 </div>
-                                <div className ="duty-card" onClick={()=>props.history.push('/getusers')}>
+                                <div className ={styles.duty_card} onClick={()=>props.history.push('/getusers')}>
                                     <Item duty = "Get All Customers/Users" ></Item>
                                     
                                 </div>
-                                <div className ="duty-card" onClick={()=>props.history.push('/liveorders')}>
+                                <div className ={styles.duty_card} onClick={()=>props.history.push('/liveorders')}>
                                     <Item duty = "Get Live Orders" ></Item>
                                     
                                 </div>
-                                <div className ="duty-card" onClick={()=>props.history.push('/orderhistory')}>
+                                <div className ={styles.duty_card} onClick={()=>props.history.push('/orderhistory')}>
                                     <Item duty = "Past Orders" ></Item>
                                     
                                 </div>
