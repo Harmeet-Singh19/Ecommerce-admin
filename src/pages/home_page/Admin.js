@@ -103,6 +103,11 @@ function Admin(props) {
                                     <Item duty = "Past Orders" ></Item>
                                     
                                 </div>
+
+                                <div className ={styles.duty_card} onClick={()=>props.history.push('/sendemail')}>
+                                    <Item duty = "Send Email to Seller" ></Item>
+                                    
+                                </div>
                                 
                 
                             </div>

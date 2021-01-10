@@ -15,7 +15,7 @@ const AllAdminPage=lazy(()=>import('./pages/all_admin_page/allAdmin'))
 const EditAdminPage=lazy(()=>import('./pages/edit_admin_page/EditAdmin'))
 const GetUserPage = lazy(()=>import('./pages/get_users_page/GetUser'))
 const EditPage= lazy(()=>import('./pages/edit_books/edit_book'))
-
+const SendEmail = lazy(()=> import('./pages/send_email_pages/SendEmail'))
 
 const AllLiveOrdersPage = lazy(() =>
   import('./pages/live_order_page/all_orders_page')
@@ -76,7 +76,7 @@ function App() {
     <Route exact path="/vendor/add/books" component={VendorUploadBookPage} />
    <Route exact path="/vendor/books/:id" component={VendorEditBookPage} /> 
    <Route exact path="/vendor/info" component={VendorAdminEditPage} />
-
+    <Route exact path = "/sendemail" component={SendEmail}/>
   </Suspense>
 
   );
