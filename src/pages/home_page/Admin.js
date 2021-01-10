@@ -106,6 +106,11 @@ function Admin(props) {
 
                                                 </div>
 
+                                                <div className={styles.duty_card} onClick={() => props.history.push('/email/records')}>
+                                                    <Item duty="Email Records" ></Item>
+
+                                                </div>
+
 
                                             </div>
                                         </>
