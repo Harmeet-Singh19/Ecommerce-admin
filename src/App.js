@@ -2,7 +2,7 @@ import React, { lazy, Suspense, useEffect } from 'react'
 import { Route } from 'react-router-dom'
 import Loader from 'react-loader-spinner'
 import './App.css'
-import allBooks from './pages/books_page/allBooks'
+
 
 
 const LoginPage = lazy(() =>
@@ -33,6 +33,7 @@ const PastOrderDetails = lazy(() =>
 )
 
 const AllBooksPage = lazy(() => import('./pages/books_page/allBooks'))
+const AllVBooksPage = lazy(() => import('./pages/vbooks_page/allvbooks'))
 
 const VendorAllBooksPage = lazy(() => import('./pages/vendor_allbooks_page/vendor_allbooks'))
 
@@ -58,6 +59,7 @@ function App() {
       <Route exact path="/" component={HomePage} />
       <Route exact path="/login" component={LoginPage} />
       <Route exact path="/books" component={AllBooksPage} />
+      <Route exact path="/vbooks" component={AllVBooksPage} />
       <Route exact path="/add/books" exact component={UploadPage} />
       <Route exact path="/books/:id" component={EditPage} />
       <Route exact path="/add/admins" component={AddAdminPage} />

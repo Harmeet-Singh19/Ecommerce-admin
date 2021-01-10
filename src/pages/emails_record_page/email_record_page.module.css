@@ -110,3 +110,28 @@
   outline: 0;
 }
 
+table {
+    width: 100%;
+    padding: 0% 1%;
+    border-collapse: 0;
+}
+
+tr {
+    outline: thin solid;
+    width: 100%;
+}
+
+tr:nth-child(odd) {}
+
+th {
+    text-align: center;
+    padding: 1% 0%;
+
+}
+
+td {
+    text-align: center;
+    padding: 1% 0%;
+    font-size: 1.1em;
+    width: 20px;
+}

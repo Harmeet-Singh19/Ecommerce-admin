@@ -14,21 +14,21 @@ class Upload extends Component {
         description:"",
         author:"",
         publisher:"",
-        course:"",
-        subject:"",
-        year:0,
+        course:"Bsc",
+        subject:"maths",
+        year:1,
         edition:"",
         weight:"",
         countInStock:0,
         image:[],
         seller:"",
         isLive:false,
-        hand:0
+        hand:1
     }
     addBook=async(urls)=>{
         await this.setState({ isLoading: true })
         await doRequest({
-            url: `/admin/book/add`,
+            url: `/admin/vbook/add`,
             method: "post",
             body: { ...this.state, image: urls },
             onSuccess: () => this.props.history.goBack(),
@@ -45,13 +45,14 @@ class Upload extends Component {
     addImages=async () =>{
         await this.setState({ isLoading: true })
  
-    let token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjljNDA3YmRhMTYyOTJhM2MzN2IxMjYiLCJpYXQiOjE2MDU2MzkyMzl9.XxIKLVS_-nPgnx4y43OWRYIz9zuy2ofCObCb0mC_YXg`
+        let token = await localStorage.getItem('token')
+
     console.log(this.state.image)
     const data = new FormData()
     for(var x = 0; x<this.state.image.length; x++) {
         data.append('file', this.state.image[x])
     }
-        axios.post(`https://du-book-server.herokuapp.com/api/admin/book/image/add`, data, {
+        axios.post(`https://du-book-server.herokuapp.com/api/admin/vbook/image/add`, data, {
             headers: {
                 
                 Authorization: token

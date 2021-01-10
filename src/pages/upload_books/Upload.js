@@ -65,7 +65,8 @@ class Upload extends Component {
     addImages=async () =>{
         await this.setState({ isLoading: true })
  
-    let token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjljNDA3YmRhMTYyOTJhM2MzN2IxMjYiLCJpYXQiOjE2MDU2MzkyMzl9.XxIKLVS_-nPgnx4y43OWRYIz9zuy2ofCObCb0mC_YXg`
+        let token = await localStorage.getItem('token')
+
     console.log(this.state.image)
     const data = new FormData()
     for(var x = 0; x<this.state.image.length; x++) {

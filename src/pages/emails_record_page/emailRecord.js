@@ -5,26 +5,25 @@ import doRequest from "../../utils/requestHooks";
 import TopBar from "../../components/Header/Header";
 
 import Loader from "react-loader-spinner"
-import DateString from "../../utils/dateUtil";
-
-import data2 from '../../config'
 
 
 // eslint-disable-next-line
 export default ({ history }) => {
-
+    const [emails,setEmails]=useState([])
     const [isLoading, setisLoading] = useState(false)
 
 
     // console.dir(data);
 
-    let getOrders = async () => {
+    let getEmails = async () => {
 
 
         await doRequest({
-            url: `/admin/order/live/orders`,
+            url: `/admin/email/`,
             method: "get",
             onSuccess: async (data) => {
+                
+                setEmails(data);
 
                 setisLoading(false)
             },
@@ -49,7 +48,7 @@ export default ({ history }) => {
                 }
             },
         });
-        setisLoading(true); getOrders()
+        setisLoading(true);getEmails();
     }, [])
     useEffect(async () => {
         let token = await localStorage.getItem('token')
@@ -82,30 +81,29 @@ export default ({ history }) => {
                                 <tr>
                                     <th>Date</th>
                                     <th>Seller Name</th>
+                                    <th>Book</th>
                                     <th>Buyer Name</th>
                                     <th>Buyer Address</th>
 
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* {data.map((email, index) => {
+                                 {emails.map((email, index) => {
                                     return (<tr key={index}>
-                                        <td>{email.name}</td>
-                                        <td>{email.email}</td>
-                                        <td>{email.phone}</td>
-
-
-
+                                        <td>{new Date(
+                                                                    email.date
+                                                                ).toLocaleDateString(
+                                                                    "en-GB"
+                                                                )}</td>
+                                        <td>{email.seller.name}</td>
+                                        <td>{email.book.name}x{email.bookQty}-{email.book.hand===1?'Fresh':'Used'}</td>
+                                        <td>{email.buyerName}</td>
+                                        <td>{email.buyerAddr}</td>
                                     </tr>)
-                                })} */}
+                                })} 
                             </tbody>
                         </table>
                     </div>
-
-
-
-
-
                 </div>
                 )
             }

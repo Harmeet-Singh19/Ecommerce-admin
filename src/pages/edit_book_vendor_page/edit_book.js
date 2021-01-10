@@ -23,7 +23,7 @@ class Upload extends Component {
             countInStock:0,
             image:[],
             seller:"",
-            isLive:true,
+            
             hand:0
         },
        bookChange:false,
@@ -32,7 +32,7 @@ class Upload extends Component {
     updateBook=async()=>{
         await this.setState({ isLoading: true })
         await doRequest({
-            url: `/admin/book/${this.props.match.params.id}`,
+            url: `/admin/vbook/${this.props.match.params.id}`,
             method: "put",
             body: { ...this.state.data },
             onSuccess: () => {
@@ -63,7 +63,7 @@ class Upload extends Component {
     for(var x = 0; x<this.state.data.image.length; x++) {
         data.append('file', this.state.data.image[x])
     }
-        axios.post(`https://du-book-server.herokuapp.com/api/admin/book/image/${this.props.match.params.id}`, data, {
+        axios.post(`https://du-book-server.herokuapp.com/api/admin/vbook/image/${this.props.match.params.id}`, data, {
             headers: {
                 Authorization: token
             }
@@ -77,16 +77,6 @@ class Upload extends Component {
                 this.setState({ isLoading: false })
             })
 }
-changeActiveStatus = async e => {
-    this.setState({ isLoading: true })
-    await doRequest({
-      url: `/admin/book/${this.props.match.params.id}`,
-      method: "delete",
-      body:{isLive:!this.state.data.isLive},
-      onSuccess: (res) =>console.log(res) 
-    });
-    this.setState({ isLoading: false })
-  }
 
 
     fileValidate = async(e) => {
@@ -119,7 +109,7 @@ changeActiveStatus = async e => {
        
        // console.log(this.state.vendors)
         await doRequest({
-            url: `/admin/book/${this.props.match.params.id}`,
+            url: `/admin/vbook/${this.props.match.params.id}`,
             method: "get",
             onSuccess: async (data) => {
               delete data.__v;
@@ -136,7 +126,7 @@ changeActiveStatus = async e => {
 
     render (){
       let disabled=this.state.isDisabled
-      let message=this.state.data.isLive?'Stop Displaying':'Make Live Again'
+  
     
         
     return (
@@ -167,8 +157,7 @@ changeActiveStatus = async e => {
                   <input type="button" value="Edit" disabled={!this.state.isDisabled} onClick={() => {
                     this.setState({ isDisabled: !this.state.isDisabled })
                   }} />
-                 <button  onClick={() => this.changeActiveStatus()}>{this.state.data.isLive?'Stop Displaying':'Make Live Again'
-    }</button>
+                
                   </div>
                   <div className={styles.inputRow}>
                       {this.state.data.image.map((imag)=>{

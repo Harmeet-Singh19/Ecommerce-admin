@@ -77,7 +77,11 @@ function Admin(props) {
                                                 </div>
 
                                                 <div className={styles.duty_card} onClick={() => props.history.push('/books')}>
-                                                    <Item duty="All Books" ></Item>
+                                                    <Item duty="FINAL BOOKS" ></Item>
+
+                                                </div>
+                                                <div className={styles.duty_card} onClick={() => props.history.push('/vbooks')}>
+                                                    <Item duty="Books upload by Vendor" ></Item>
 
                                                 </div>
                                                 <div className={styles.duty_card} onClick={() => props.history.push('/admins')}>
