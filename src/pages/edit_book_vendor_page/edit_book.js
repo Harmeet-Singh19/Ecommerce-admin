@@ -305,11 +305,16 @@ class Upload extends Component {
                     }
                   })
                 }} value={this.state.data.course} required >
-                                            <option  value="Bsc">Bsc</option>
-                                            <option value="Bcom">Bcom</option>
-                                            <option value="Bscom">Bscom</option>
-                                            <option value="Engg">Engg</option>
-                                            <option value="Engg">Mtech</option>
+                                             <option value="Bms">Bachelor of Management Studies</option>
+                                                                <option value="BcomH">Bcom(Hons)</option>
+                                                                <option value="BcomP">Bcom(P)</option>
+                                                                <option value="BAHEco">BA(Hons) Economics</option>
+                                                                <option value="BAHEng">BA(Hons) English</option>
+                                                                <option value="BAHPsy">BA(Hons) Psychology</option>
+                                                                <option value="BAHSoc">BA(Hons) Sociology</option>
+                                                                <option value="BscHSta">BSc(Hons) Statistics</option>
+                                                                <option value="BscHMat">BSc(Hons) Mathematics</option>
+
                                             
                                         </select>
                                             </label>

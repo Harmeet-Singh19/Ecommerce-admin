@@ -14,7 +14,7 @@ class Upload extends Component {
         description: "",
         author: "",
         publisher: "",
-        course: "Bsc",
+        course: "Bms",
         subject: "maths",
         year: 1,
         edition: "",
@@ -230,15 +230,15 @@ class Upload extends Component {
                                                                 })
                                                                 await console.log(this.state.course)
                                                             }} required >
-                                                                <option value="Bachelor of Management Studies">Bachelor of Management Studies</option>
-                                                                <option value="Bcom(Hons)">Bcom(Hons)</option>
-                                                                <option value="Bcom(P)">Bcom(P)</option>
-                                                                <option value="BA(Hons) Economics">BA(Hons) Economics</option>
-                                                                <option value="BA(Hons) English">BA(Hons) English</option>
-                                                                <option value="BA(Hons) Psychology">BA(Hons) Psychology</option>
-                                                                <option value="BA(Hons) Sociology">BA(Hons) Sociology</option>
-                                                                <option value="BSc(Hons) Statistics">BSc(Hons) Statistics</option>
-                                                                <option value="BSc(Hons) Mathematics">BSc(Hons) Mathematics</option>
+                                                                  <option value="Bms">Bachelor of Management Studies</option>
+                                                                <option value="BcomH">Bcom(Hons)</option>
+                                                                <option value="BcomP">Bcom(P)</option>
+                                                                <option value="BAHEco">BA(Hons) Economics</option>
+                                                                <option value="BAHEng">BA(Hons) English</option>
+                                                                <option value="BAHPsy">BA(Hons) Psychology</option>
+                                                                <option value="BAHSoc">BA(Hons) Sociology</option>
+                                                                <option value="BscHSta">BSc(Hons) Statistics</option>
+                                                                <option value="BscHMat">BSc(Hons) Mathematics</option>
 
                                                             </select>
                                                         </label>
