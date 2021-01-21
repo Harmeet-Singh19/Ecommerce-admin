@@ -15,7 +15,7 @@ class Upload extends Component {
         author: "",
         publisher: "",
         course: "Bms",
-        subject: "maths",
+        subject: "",
         year: 1,
         edition: "",
         weight: "",
@@ -282,18 +282,15 @@ class Upload extends Component {
                                                         </label>
                                                         <label style={{ width: "100%" }}>
                                                             Subject:
-                                                <select className="form-control" onChange={async (e) => {
-                                                                await this.setState({
+                                                            <input type="text" placeholder="Enter subject"
+                                                                value={this.state.subject}
+                                                                onChange={(e) => this.setState({
                                                                     ...this.state,
                                                                     subject: e.target.value
-                                                                })
-                                                                await console.log(this.state.course)
-                                                            }} required >
-                                                                <option value="maths">Maths</option>
-                                                                <option value="physics">Physics</option>
-
-
-                                                            </select>
+                                                                })}
+                                                                required
+                                                                className="form-control"
+                                                            />
                                                         </label>
 
                                                         <label style={{ width: "100%" }}>

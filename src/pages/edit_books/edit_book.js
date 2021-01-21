@@ -394,20 +394,18 @@ changeActiveStatus = async e => {
                                             </label>
                                             <label style={{width:"100%"}}>
                                                 Subject: 
-                                                <select  disabled={this.state.isDisabled} className="form-control" onChange={e => {
-                  this.setState({
-                    data: {
-                      ...this.state.data,
-                      subject: e.target.value
-                    }
-                  })
-                }} value={this.state.data.subject}required >
-                                            <option  value="maths">Maths</option>
-                                            <option  value="physics">Physics</option>
-                                            <option  value="english">English</option>
-                                           
-                                            
-                                        </select>
+                                                <input type="text" placeholder="Enter subject"
+                                                        onChange={e => {
+                                                            this.setState({
+                                                              data: {
+                                                                ...this.state.data,
+                                                                subject: e.target.value
+                                                              }
+                                                            })
+                                                          }} value={this.state.data.subject}
+                                                         required disabled={this.state.isDisabled}
+                                                                    className="form-control"
+                                                                    />
                                             </label>
         
                                             <label style={{width:"100%"}}>
