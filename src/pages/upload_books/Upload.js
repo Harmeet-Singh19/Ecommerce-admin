@@ -21,7 +21,7 @@ class Upload extends Component {
         weight: "",
         countInStock: 0,
         image: [],
-        seller: "",
+      
         vendors: [],
         isLive: true,
         hand: 1
@@ -164,22 +164,7 @@ class Upload extends Component {
                                                             />
                                                         </label>
 
-                                                        <br />
-                                                        <label style={{ width: "100%" }}>
-                                                            Seller:
-                                                <select required className="form-control" placeholder="of the course used in (uptil 3 for commerce and 4 for btech)" onChange={async (e) => {
-                                                                await this.setState({
-                                                                    ...this.state,
-                                                                    seller: e.target.value
-                                                                })
-                                                                await console.log(this.state.seller)
-                                                            }} >
-                                                                {this.state.vendors.map((vendor, index) => (
-                                                                    <option value={`${vendor._id}`}>{vendor.name},{vendor.address}</option>
-                                                                ))}
-
-                                                            </select>
-                                                        </label>
+                                                       
                                                         <br />
 
                                                         <label style={{ width: "100%" }}>

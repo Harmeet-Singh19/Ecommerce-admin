@@ -22,7 +22,7 @@ class Upload extends Component {
             weight:"",
             countInStock:0,
             image:[],
-            seller:"",
+           
             isLive:true,
             hand:0
         },
@@ -255,23 +255,7 @@ changeActiveStatus = async e => {
                                                                     />
                                                 </label>
                                         
-                                            <br />
-                                            <label style={{width:"100%"}}>
-                                                Seller: 
-                                                <select required className="form-control" placeholder="of the course used in (uptil 3 for commerce and 4 for btech)" onChange={e => {
-                  this.setState({
-                    data: {
-                      ...this.state.data,
-                      seller: e.target.value
-                    }
-                  })
-                }} value={this.state.data.seller} disabled={this.state.isDisabled}>
-                                          {this.state.vendors.map((vendor,index)=>(
-                                              <option value={`${vendor._id}`}>{vendor.name},{vendor.address}</option>
-                                          ))}
                                             
-                                        </select>
-                                            </label>
                                             <br/>
         
                                             <label style={{width:"100%"}}>
