@@ -339,7 +339,7 @@ changeActiveStatus = async e => {
                                             </label>
                                             <label style={{width:"100%"}}>
                                                 Weight: 
-                                                 <input type="number" placeholder="Rough estimate of the weight(in gms)"
+                                                 <input type="number" placeholder="Rough estimate of the weight(in kgs)"
                                                   onChange={e => {
                                                     this.setState({
                                                       data: {
@@ -369,7 +369,7 @@ changeActiveStatus = async e => {
                                                                 <option value="BAHEco">BA(Hons) Economics</option>
                                                                 <option value="BAHEng">BA(Hons) English</option>
                                                                 <option value="BAHPsy">BA(Hons) Psychology</option>
-                                                                <option value="BAHSoc">BA(Hons) Sociology</option>
+                                                                <option value="Shivdas">Shivdas</option>
                                                                 <option value="BscHSta">BSc(Hons) Statistics</option>
                                                                 <option value="BscHMat">BSc(Hons) Mathematics</option>
 
