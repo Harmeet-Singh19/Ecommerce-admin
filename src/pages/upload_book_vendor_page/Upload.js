@@ -233,9 +233,9 @@ class Upload extends Component {
                                                                   <option value="Bms">Bachelor of Management Studies</option>
                                                                 <option value="BcomH">Bcom(Hons)</option>
                                                                 <option value="BcomP">Bcom(P)</option>
-                                                                <option value="BAHEco">BA(Hons) Economics</option>
-                                                                <option value="BAHEng">BA(Hons) English</option>
-                                                                <option value="BAHPsy">BA(Hons) Psychology</option>
+                                                                <option value="BaHEco">BA(Hons) Economics</option>
+                                                                <option value="BaHEng">BA(Hons) English</option>
+                                                                <option value="BaHPsy">BA(Hons) Psychology</option>
                                                                 <option value="Shivdas">Shivdas</option>
                                                                 <option value="BscHSta">BSc(Hons) Statistics</option>
                                                                 <option value="BscHMat">BSc(Hons) Mathematics</option>

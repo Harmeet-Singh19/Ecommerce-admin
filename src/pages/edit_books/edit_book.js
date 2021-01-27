@@ -31,11 +31,14 @@ class Upload extends Component {
     }
     updateBook=async()=>{
         await this.setState({ isLoading: true })
+        console.log(this.state.bookChange)
+        
         await doRequest({
             url: `/admin/book/${this.props.match.params.id}`,
             method: "put",
             body: { ...this.state.data },
             onSuccess: () => {
+              console.log(this.state.bookChange)
                 if(this.state.bookChange===true){
                     this.updateImages();
                 }
@@ -77,7 +80,8 @@ class Upload extends Component {
         await this.setState({ isLoading: true })
  
     let token = await localStorage.getItem('token')
-    console.log(this.state.data.image)
+
+    console.log(token)
     const data = new FormData()
     for(var x = 0; x<this.state.data.image.length; x++) {
         data.append('file', this.state.data.image[x])
@@ -366,9 +370,9 @@ changeActiveStatus = async e => {
                                             <option value="Bms">Bachelor of Management Studies</option>
                                                                 <option value="BcomH">Bcom(Hons)</option>
                                                                 <option value="BcomP">Bcom(P)</option>
-                                                                <option value="BAHEco">BA(Hons) Economics</option>
-                                                                <option value="BAHEng">BA(Hons) English</option>
-                                                                <option value="BAHPsy">BA(Hons) Psychology</option>
+                                                                <option value="BaHEco">BA(Hons) Economics</option>
+                                                                <option value="BaHEng">BA(Hons) English</option>
+                                                                <option value="BaHPsy">BA(Hons) Psychology</option>
                                                                 <option value="Shivdas">Shivdas</option>
                                                                 <option value="BscHSta">BSc(Hons) Statistics</option>
                                                                 <option value="BscHMat">BSc(Hons) Mathematics</option>

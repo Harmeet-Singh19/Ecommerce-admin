@@ -1,5 +1,5 @@
 const data2 = {
-    url: "https://du-book-server.herokuapp.com",
+    url: "http://localhost:4000",
 };
 
 export default data2;
