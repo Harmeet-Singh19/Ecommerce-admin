@@ -21,7 +21,7 @@ class Upload extends Component {
         weight: "",
         countInStock: 0,
         image: [],
-      
+
         vendors: [],
         isLive: true,
         hand: 1
@@ -164,7 +164,7 @@ class Upload extends Component {
                                                             />
                                                         </label>
 
-                                                       
+
                                                         <br />
 
                                                         <label style={{ width: "100%" }}>
@@ -258,7 +258,7 @@ class Upload extends Component {
                                                                 <option value="BcomP">Bcom(P)</option>
                                                                 <option value="BaHEco">BA(Hons) Economics</option>
                                                                 <option value="BaHEng">BA(Hons) English</option>
-                                                                <option value="BaHPsy">BA(Hons) Psychology</option>
+                                                                <option value="BaHPsy">BA(Hons) Pol Science</option>
                                                                 <option value="Shivdas">Shivdas</option>
                                                                 <option value="BscHSta">BSc(Hons) Statistics</option>
                                                                 <option value="BscHMat">BSc(Hons) Mathematics</option>

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import doRequest from "../../utils/requestHooks";
 import Loader from "react-loader-spinner"
@@ -9,38 +9,38 @@ import TopBar from '../../components/Header/Header'
 //actions part
 
 
-class AllBook extends Component{
-    constructor(props){
+class AllBook extends Component {
+    constructor(props) {
         super(props);
         this.state = {
             data: [],
-            isLoading:true,
-            id:""
+            isLoading: true,
+            id: ""
         }
     }
-    getBooks = async(id)  => {
+    getBooks = async (id) => {
         console.log(id)
-       
+
         await doRequest({
-            url: `/admin/book/vendor/${id}`,
+            url: `/admin/vbook/vendor/${id}`,
             method: "get",
-            onSuccess: (data) =>{ 
-        console.log(data)
-        this.setState({
-            ...this.state,
-            data:data
-        })
-         this.setState({isLoading:false})
-    },
+            onSuccess: (data) => {
+
+                this.setState({
+                    ...this.state,
+                    data: data
+                })
+                this.setState({ isLoading: false })
+            },
             onError: (err) => { alert(err) },
-          });
-          
+        });
+
     }
-    
+
     componentDidUpdate = async (previousProps) => {
-        if(this.props.books !== previousProps.books){
-            await this.setState({data: [...this.props.books]})
-            this.setState({isLoading:false})
+        if (this.props.books !== previousProps.books) {
+            await this.setState({ data: [...this.props.books] })
+            this.setState({ isLoading: false })
         }
     }
 
@@ -49,30 +49,30 @@ class AllBook extends Component{
             url: "/admin/auth/verify",
             method: "get",
             onSuccess: async (data) => {
-               
-               await this.setState({
-                   ...this.state,
-                   id:data.admin._id
-               })
-               console.log(this.state)
+
+                await this.setState({
+                    ...this.state,
+                    id: data.admin._id
+                })
+                console.log(this.state)
             },
-          });
-        await this.setState({isLoading:true})
+        });
+        await this.setState({ isLoading: true })
         await this.getBooks(this.state.id)
-      
+
     }
-    render(){
-        return(
+    render() {
+        return (
             <div>
-                 <TopBar history={this.props.history} />
-                {this.state.isLoading?
+                <TopBar history={this.props.history} />
+                {this.state.isLoading ?
                     (<center>
                         <Loader type='ThreeDots' color='yellow' height={250} width={250} />
                     </center>)
-                    : (<div className={styles.MenuPageStyle} style={{color:"white"}}>
+                    : (<div className={styles.MenuPageStyle} style={{ color: "white" }}>
 
-                        <div className = {styles.primaryButtonContainer}>
-                            <div className={styles.primaryButton} onClick={() => this.props.history.push("add/books")}>
+                        <div className={styles.primaryButtonContainer}>
+                            <div className={styles.primaryButton} onClick={() => this.props.history.push("vendor/add/books")}>
                                 Add Book
                             </div>
                         </div>
@@ -81,10 +81,10 @@ class AllBook extends Component{
                                 return (
                                     <div className={styles.bookCard} key={index}>
                                         <div className={styles.bookImage}>
-                                            {book.image.map((imag)=>(
+                                            {book.image.map((imag) => (
                                                 <img src={imag} alt="No Image Uploaded" width={100} height={100} />
                                             ))}
-                                            
+
                                         </div>
                                         <h3>{book.name}</h3>
                                         <h4>Price : {book.price}</h4>
@@ -96,13 +96,13 @@ class AllBook extends Component{
                             })}
                         </div>
                     </div>)
-                    }
+                }
 
             </div>
         );
     }
 
-    
+
 }
 
 

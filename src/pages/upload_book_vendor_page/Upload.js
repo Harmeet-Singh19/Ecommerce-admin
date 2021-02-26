@@ -230,12 +230,12 @@ class Upload extends Component {
                                                                 })
                                                                 await console.log(this.state.course)
                                                             }} required >
-                                                                  <option value="Bms">Bachelor of Management Studies</option>
+                                                                <option value="Bms">Bachelor of Management Studies</option>
                                                                 <option value="BcomH">Bcom(Hons)</option>
                                                                 <option value="BcomP">Bcom(P)</option>
                                                                 <option value="BaHEco">BA(Hons) Economics</option>
                                                                 <option value="BaHEng">BA(Hons) English</option>
-                                                                <option value="BaHPsy">BA(Hons) Psychology</option>
+                                                                <option value="BaHPsy">BA(Hons) Pol Science</option>
                                                                 <option value="Shivdas">Shivdas</option>
                                                                 <option value="BscHSta">BSc(Hons) Statistics</option>
                                                                 <option value="BscHMat">BSc(Hons) Mathematics</option>
