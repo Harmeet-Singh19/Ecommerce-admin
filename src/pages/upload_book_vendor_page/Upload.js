@@ -125,11 +125,12 @@ class Upload extends Component {
 
                                             <div className="mt-3">
                                                 <div className="form">
-                                                    <form style={{ justifyContent: "center" }} >
+                                                    <form style={{ justifyContent: "center" }} onSubmit={this.addImages}>
 
                                                         <label style={{ width: "100%" }}>
                                                             Book Name:
                                                          <input type="text" placeholder="Enter book name"
+                                                    
                                                                 value={this.state.name}
                                                                 onChange={(e) => this.setState({
                                                                     ...this.state,
@@ -315,7 +316,7 @@ class Upload extends Component {
                                                         </label>
                                                         <br />
                                                         <div className={styles.user_login_button}>
-                                                            <input type="button" value="Add Book" onClick={this.addImages} />
+                                                            <input type="submit" value="Add Book"  />
                                                         </div>
                                                     </form>
                                                 </div>
