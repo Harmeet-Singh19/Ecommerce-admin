@@ -85,6 +85,7 @@ class AllBook extends Component{
                                         </div>
                                         <h3>{book.name}</h3>
                                         <h4>Price : {book.price}</h4>
+                                        <h5>Vendor info : {book.seller.name}<br></br> {book.seller.email}<br></br>{book.seller.address}</h5>
                                         <div className={styles.editBook} onClick={() => { this.props.history.push(`/vendor/books/${book._id}`) }}>
                                             Edit
                     </div>

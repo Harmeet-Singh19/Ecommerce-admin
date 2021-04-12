@@ -115,7 +115,7 @@ class Upload extends Component {
         delete data.__v;
         delete data._id;
 
-        //  console.log(data)
+          console.log(data)
 
         await this.setState({ data })
       },
@@ -150,6 +150,10 @@ class Upload extends Component {
                       <div className={styles.card_body} style={{ width: "80%" }}>
 
                         <div className="mt-3">
+                          <div>
+                            <span>Vendor Info:</span>
+                          </div>
+
                           <div className={styles.form}>
                             <form style={{ justifyContent: "center" }} >
                               <div className={styles.buttons_container}>
