@@ -240,7 +240,7 @@ class Upload extends Component {
                                                                 <option value="Shivdas">Shivdas</option>
                                                                 <option value="BscHSta">BSc(Hons) Statistics</option>
                                                                 <option value="BscHMat">BSc(Hons) Mathematics</option>
-
+                                                                <option value="Competitive">Competitive</option>
                                                             </select>
                                                         </label>
                                                         <label style={{ width: "100%" }}>
